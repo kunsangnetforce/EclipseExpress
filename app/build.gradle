@@ -1,0 +1,59 @@
+buildscript {
+    repositories {
+        maven { url 'https://maven.fabric.io/public' }
+    }
+
+    dependencies {
+        classpath 'io.fabric.tools:gradle:1.+'
+    }
+}
+apply plugin: 'com.android.application'
+apply plugin: 'io.fabric'
+
+android {
+    compileSdkVersion 24
+    buildToolsVersion "23.0.3"
+
+    defaultConfig {
+        applicationId "com.netforceinfotech.eclipseexpress"
+        minSdkVersion 16
+        targetSdkVersion 24
+        versionCode 1
+        versionName "1.0"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+repositories {
+    mavenCentral()
+    maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
+    maven { url 'https://maven.fabric.io/public' }
+}
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    testCompile 'junit:junit:4.12'
+
+
+
+    compile 'com.android.support:appcompat-v7:24.0.0'
+    compile 'com.facebook.android:facebook-android-sdk:4.+'
+    compile 'com.balysv:material-ripple:1.0.2'
+    compile 'com.android.support:design:24.0.0'
+    compile 'de.hdodenhof:circleimageview:2.0.0'
+    compile 'com.android.support:support-v4:24.0.0'
+    compile 'com.github.orangegangsters:swipy:1.2.3@aar'
+    compile 'com.github.carlonzo.stikkyheader:core:0.0.3-SNAPSHOT'
+    compile 'com.mikepenz:actionitembadge:3.2.6@aar'
+
+    //SUB-DEPENDENCIES
+    //Android-Iconics - used to provide an easy API for icons
+    compile 'com.mikepenz:iconics-core:2.6.6@aar'
+    compile('com.twitter.sdk.android:twitter:1.14.1@aar') {
+        transitive = true;
+    }
+
+}

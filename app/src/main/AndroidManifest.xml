@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.netforceinfotech.eclipseexpress">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/logo"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id" />
+
+        <activity
+            android:name=".MainActivity"
+            android:windowSoftInputMode="adjustResize">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".login.LoginActivity"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".login.RegistrationActivity"
+            android:windowSoftInputMode="adjustResize" />
+        <activity android:name=".dashboard.DashboardActivity" />
+        <activity android:name=".discover.DiscoverActivity"></activity>
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="533d25208d92e11753e3c7fac13e423ec262fa6b" />
+    </application>
+
+</manifest>
