@@ -219,7 +219,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
 
 
-                if (Validation.isEmailAddress(email_edittext,true))
+                if (Validation.isEmailAddress(email_edittext,false))
                 {
                     intent = new Intent(context, DashboardActivity.class);
                     startActivity(intent);
