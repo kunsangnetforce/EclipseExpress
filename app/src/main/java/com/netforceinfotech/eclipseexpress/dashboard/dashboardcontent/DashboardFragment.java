@@ -24,7 +24,8 @@ import it.carlom.stikkyheader.core.animator.HeaderStikkyAnimator;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class DashboardFragment extends Fragment implements View.OnClickListener {
+public class DashboardFragment extends Fragment implements View.OnClickListener
+{
 
 
     private RecyclerView recyclerView_Commom;
@@ -34,14 +35,15 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
     private StikkyHeaderBuilder.RecyclerViewBuilder stikkyHeader;
     private SwipyRefreshLayout mSwipyRefreshLayout;
 
-    public DashboardFragment() {
+    public DashboardFragment()
+    {
         // Required empty public constructor
     }
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+    {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_dashboard, container, false);
         context = getActivity();
@@ -50,11 +52,15 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
         return view;
     }
 
-    private void initView(View view) {
+    private void initView(View view)
+    {
         mSwipyRefreshLayout = (SwipyRefreshLayout) view.findViewById(R.id.swipyrefreshlayout);
-        mSwipyRefreshLayout.setOnRefreshListener(new SwipyRefreshLayout.OnRefreshListener() {
+
+        mSwipyRefreshLayout.setOnRefreshListener(new SwipyRefreshLayout.OnRefreshListener()
+        {
             @Override
-            public void onRefresh(SwipyRefreshLayoutDirection direction) {
+            public void onRefresh(SwipyRefreshLayoutDirection direction)
+            {
                 refreshItem();
             }
         });
@@ -62,17 +68,22 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
 
     }
 
-    private void refreshItem() {
-        try {
+    private void refreshItem()
+    {
+        try
+        {
             Thread.sleep(2000);
             mSwipyRefreshLayout.setRefreshing(false);
-        } catch (InterruptedException e) {
+        }
+        catch (InterruptedException e)
+        {
             e.printStackTrace();
         }
     }
 
     @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+    public void onActivityCreated(@Nullable Bundle savedInstanceState)
+    {
         super.onActivityCreated(savedInstanceState);
         stikkyHeader = StikkyHeaderBuilder.stickTo(recyclerView_Commom);
         stikkyHeader.setHeader(R.id.header, (ViewGroup) getView())
