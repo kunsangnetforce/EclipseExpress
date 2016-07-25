@@ -5,10 +5,12 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
-public class PagerAdapter extends FragmentStatePagerAdapter {
+public class PagerAdapter extends FragmentStatePagerAdapter
+{
     int mNumOfTabs;
 
-    public PagerAdapter(FragmentManager fm, int NumOfTabs) {
+    public PagerAdapter(FragmentManager fm, int NumOfTabs)
+    {
         super(fm);
         this.mNumOfTabs = NumOfTabs;
     }
@@ -16,7 +18,8 @@ public class PagerAdapter extends FragmentStatePagerAdapter {
     @Override
     public Fragment getItem(int position) {
 
-        for (int i = 0; i < mNumOfTabs; i++) {
+        for (int i = 0; i < mNumOfTabs; i++)
+        {
             if (i == position) {
                 CategoriesFragment appFragment = new CategoriesFragment();
                 Bundle args = new Bundle();

@@ -30,10 +30,15 @@
             android:name=".login.RegistrationActivity"
             android:windowSoftInputMode="adjustResize" />
         <activity android:name=".dashboard.DashboardActivity" />
-        <activity android:name=".discover.DiscoverActivity"></activity>
+        <activity android:name=".discover.DiscoverActivity" />
+
         <meta-data
             android:name="io.fabric.ApiKey"
             android:value="533d25208d92e11753e3c7fac13e423ec262fa6b" />
+
+        <activity android:name=".json.ShowBookDetails" />
+        <activity android:name=".json.ManActivity" />
+        <activity android:name=".jsonclass.Woman"></activity>
     </application>
 
 </manifest>
