@@ -38,7 +38,14 @@
 
         <activity android:name=".json.ShowBookDetails" />
         <activity android:name=".json.ManActivity" />
-        <activity android:name=".jsonclass.Woman"></activity>
+        <activity android:name=".jsonclass.Woman" />
+        <activity android:name=".search.SearchActivity" />
+        <activity android:name=".category.CategoryActivity" />
+        <activity
+            android:name=".productdetail.ProductDetailActivity"
+            android:windowSoftInputMode="adjustResize" />
+        <activity android:name=".checkout.CheckoutActivity1" />
+        <activity android:name=".checkout.CheckoutActivity2"></activity>
     </application>
 
 </manifest>

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">ElipseExpress</string>
+    <string name="app_name">EclipseExpress</string>
     <string name="facebook_app_id">621308328026023</string>
     <string name="welcome">Welcome to EclipseExpress</string>
     <string name="email">Email</string>
@@ -21,5 +21,16 @@
     <string name="wishlist">WishList</string>
     <string name="add_to_cart">Add to cart</string>
     <string name="global_shopping"><![CDATA[Global shopping & trade starts here]]></string>
+    <string name="expressdeal">EXPRESS DEALS</string>
+    <string name="bestselling">BEST SELLING</string>
+    <string name="expresscollection">ECLIPSE EXPRESS COLLECTION</string>
+    <string name="trendingstyle">TRENDING STYLES</string>
+    <string name="allsale">ALL SALE</string>
+    <string name="search">Search</string>
+    <string name="lorem">Lorem dress product</string>
+    <string name="check_availability_option">Check availability and delivery option</string>
+    <string name="choose_color">Choose a colour for item</string>
+    <string name="ok">OK</string>
+    <string name="size_available">Size available for this item</string>
 
 </resources>
