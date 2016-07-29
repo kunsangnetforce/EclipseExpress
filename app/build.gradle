@@ -32,6 +32,8 @@ repositories {
     mavenCentral()
     maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
     maven { url 'https://maven.fabric.io/public' }
+    maven { url "https://jitpack.io" }
+
 }
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
@@ -59,6 +61,7 @@ dependencies {
     compile 'com.shehabic.droppy:Droppy:0.5.1@aar'
     compile 'at.blogc:expandabletextview:1.0.3'
     compile 'com.afollestad.material-dialogs:core:0.8.6.0'
+    compile 'com.github.jd-alexander:LikeButton:0.2.0'
 
 
 }
