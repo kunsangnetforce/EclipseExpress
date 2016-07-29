@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:focusableInTouchMode="true"
     tools:context="com.netforceinfotech.eclipseexpress.productdetail.ProductDetailActivity">
 
     <android.support.design.widget.AppBarLayout
@@ -18,9 +19,9 @@
     </android.support.design.widget.AppBarLayout>
 
     <ScrollView
-        android:layout_above="@+id/linearlayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_above="@+id/linearlayout"
         android:layout_below="@+id/appbar"
         android:background="@color/grey">
 
@@ -34,9 +35,9 @@
             android:orientation="vertical">
 
             <android.support.v7.widget.CardView
+                android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="400dp"
-                android:visibility="visible"
                 app:cardCornerRadius="5dp">
 
                 <RelativeLayout
@@ -236,7 +237,6 @@
                         android:layout_centerVertical="true"
                         android:src="@drawable/ic_plus" />
 
-                   
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -270,7 +270,7 @@
                         android:text="@string/check_availability_option"
                         android:textSize="14sp" />
 
-                    <LinearLayout
+                    <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/text2"
@@ -279,18 +279,25 @@
                         android:orientation="horizontal">
 
                         <EditText
-                            android:layout_width="240dp"
+                            android:hint="@string/postal"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
                             android:layout_marginTop="6dp"
-                            android:background="@color/transparent" />
+                            android:layout_toLeftOf="@+id/buttonCheck"
+                            android:background="@color/transparent"
+                            android:inputType="number"
+                            android:maxLines="1" />
 
                         <Button
+                            android:id="@+id/buttonCheck"
                             android:layout_width="wrap_content"
                             android:layout_height="35dp"
+                            android:layout_alignParentRight="true"
                             android:background="@color/colorPrimaryText"
                             android:text="Check"
                             android:textColor="@color/white" />
-                    </LinearLayout>
+                    </RelativeLayout>
 
                 </RelativeLayout>
             </android.support.v7.widget.CardView>
@@ -344,32 +351,45 @@
 
                     </LinearLayout>
 
-                    <LinearLayout
-                        android:id="@+id/linearlayoutColors"
-                        android:layout_width="match_parent"
+                    <HorizontalScrollView
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="6dp"
-                        android:gravity="center"
-                        android:orientation="horizontal">
+                        android:scrollbarSize="1dp">
 
-                        <View
-                            android:layout_width="40dp"
-                            android:layout_height="40dp"
-                            android:layout_margin="5dp"
-                            android:background="@color/grey" />
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
 
-                        <View
-                            android:layout_width="40dp"
-                            android:layout_height="40dp"
-                            android:layout_margin="5dp"
-                            android:background="@color/black" />
+                            <LinearLayout
+                                android:id="@+id/linearlayoutViewColor"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="6dp"
+                                android:gravity="center"
+                                android:orientation="horizontal">
 
-                        <View
-                            android:layout_width="40dp"
-                            android:layout_height="40dp"
-                            android:layout_margin="5dp"
-                            android:background="@color/greendark" />
-                    </LinearLayout>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/linearlayoutRadioColor"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="6dp"
+                                android:gravity="center"
+                                android:orientation="horizontal">
+
+                                <RadioGroup
+                                    android:id="@+id/radioGroupColor"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal">
+
+                                </RadioGroup>
+
+                            </LinearLayout>
+                        </RelativeLayout>
+                    </HorizontalScrollView>
 
                     <View
                         android:layout_width="match_parent"
@@ -413,62 +433,45 @@
 
                     </LinearLayout>
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
+                    <HorizontalScrollView
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="6dp"
-                        android:gravity="center"
-                        android:orientation="horizontal">
+                        android:scrollbarSize="1dp">
 
-                        <TextView
-                            android:layout_width="40dp"
-                            android:layout_height="40dp"
-                            android:layout_margin="5dp"
-                            android:background="@color/grey"
-                            android:gravity="center"
-                            android:text="6" />
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
 
-                        <TextView
-                            android:layout_width="40dp"
-                            android:layout_height="40dp"
-                            android:layout_margin="5dp"
-                            android:background="@color/blue"
-                            android:gravity="center"
-                            android:text="8"
-                            android:textColor="@color/white" />
+                            <LinearLayout
+                                android:id="@+id/linearlayoutRadioSize"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="6dp"
+                                android:gravity="center"
+                                android:orientation="horizontal">
 
-                        <TextView
-                            android:layout_width="40dp"
-                            android:layout_height="40dp"
-                            android:layout_margin="5dp"
-                            android:background="@color/grey"
-                            android:gravity="center"
-                            android:text="10" />
+                                <RadioGroup
+                                    android:id="@+id/radioGroupSize"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal">
 
-                        <TextView
-                            android:layout_width="40dp"
-                            android:layout_height="40dp"
-                            android:layout_margin="5dp"
-                            android:background="@color/grey"
-                            android:gravity="center"
-                            android:text="12" />
+                                </RadioGroup>
 
-                        <TextView
-                            android:layout_width="40dp"
-                            android:layout_height="40dp"
-                            android:layout_margin="5dp"
-                            android:background="@color/grey"
-                            android:gravity="center"
-                            android:text="14" />
+                            </LinearLayout>
 
-                        <TextView
-                            android:layout_width="40dp"
-                            android:layout_height="40dp"
-                            android:layout_margin="5dp"
-                            android:background="@color/grey"
-                            android:gravity="center"
-                            android:text="16" />
-                    </LinearLayout>
+                            <LinearLayout
+                                android:id="@+id/linearlayoutTextViewSize"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="6dp"
+                                android:gravity="center"
+                                android:orientation="horizontal">
+
+
+                            </LinearLayout>
+                        </RelativeLayout>
+                    </HorizontalScrollView>
                 </LinearLayout>
             </android.support.v7.widget.CardView>
 
@@ -494,10 +497,10 @@
             </LinearLayout>
 
             <LinearLayout
-                android:layout_marginBottom="26dp"
-                android:layout_marginTop="32dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="26dp"
+                android:layout_marginTop="32dp"
                 android:orientation="horizontal"
                 android:weightSum="150">
 
@@ -513,14 +516,15 @@
                         android:src="@drawable/twitter_round" />
 
                     <TextView
-                        android:textSize="12sp"
-                        android:gravity="center"
-                        android:text="355"
                         android:layout_width="50dp"
                         android:layout_height="30dp"
-                        android:background="@drawable/text_bg" />
+                        android:background="@drawable/text_bg"
+                        android:gravity="center"
+                        android:text="355"
+                        android:textSize="12sp" />
 
                 </LinearLayout>
+
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -533,14 +537,15 @@
                         android:src="@drawable/facebook_round" />
 
                     <TextView
-                        android:textSize="12sp"
-                        android:gravity="center"
-                        android:text="355"
                         android:layout_width="50dp"
                         android:layout_height="30dp"
-                        android:background="@drawable/text_bg" />
+                        android:background="@drawable/text_bg"
+                        android:gravity="center"
+                        android:text="355"
+                        android:textSize="12sp" />
 
                 </LinearLayout>
+
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -553,15 +558,15 @@
                         android:src="@drawable/pin_round" />
 
                     <TextView
-                        android:textSize="12sp"
-                        android:gravity="center"
-                        android:text="355"
                         android:layout_width="50dp"
                         android:layout_height="30dp"
-                        android:background="@drawable/text_bg" />
+                        android:background="@drawable/text_bg"
+                        android:gravity="center"
+                        android:text="355"
+                        android:textSize="12sp" />
 
                 </LinearLayout>
-               
+
             </LinearLayout>
         </LinearLayout>
     </ScrollView>

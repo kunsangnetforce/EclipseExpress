@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/linearlayout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="3dp"
+    android:layout_marginTop="16dp"
     android:gravity="center_vertical"
     android:orientation="vertical">
 
@@ -31,12 +32,13 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="3dp"
-            android:layout_weight="70"
+            android:layout_weight="55"
             android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:gravity="center_vertical"
                 android:orientation="horizontal"
                 android:weightSum="100">
 
@@ -44,22 +46,12 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="80"
+                    android:maxLines="2"
                     android:text="@string/lorem"
                     android:textColor="@color/colorPrimaryText"
                     android:textSize="16dp"
                     android:textStyle="bold" />
 
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="20"
-                    android:gravity="center">
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/ic_heart_outline" />
-                </LinearLayout>
             </LinearLayout>
 
             <TextView
@@ -134,11 +126,25 @@
             </LinearLayout>
         </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="15"
+            android:gravity="center">
+
+            <com.like.LikeButton
+                android:id="@+id/star_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="12dp"
+                app:icon_size="15dp"
+                app:icon_type="heart" />
+        </LinearLayout>
     </LinearLayout>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:layout_marginTop="3dp"
+        android:layout_marginTop="16dp"
         android:background="@color/colorDivider" />
 </LinearLayout>

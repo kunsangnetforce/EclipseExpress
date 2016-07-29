@@ -2,20 +2,27 @@ package com.netforceinfotech.eclipseexpress.productdetail;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.content.res.ResourcesCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
 import android.text.Html;
+import android.util.TypedValue;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -46,6 +53,7 @@ public class ProductDetailActivity extends AppCompatActivity implements View.OnC
     CardView cardviewDescription, cardViewTag, cardViewReview;
     ImageView imageViewPlus;
     Context context;
+    RadioGroup radioGroupColor, radioGroupSize;
     private Toolbar toolbar;
 
     @Override
@@ -77,6 +85,8 @@ public class ProductDetailActivity extends AppCompatActivity implements View.OnC
     }
 
     private void initview() {
+        radioGroupColor = (RadioGroup) findViewById(R.id.radioGroupColor);
+        radioGroupSize = (RadioGroup) findViewById(R.id.radioGroupSize);
         linearLayoutQuantity = (LinearLayout) findViewById(R.id.linearlayoutQuantity);
         expandableTextView = (ExpandableTextView) findViewById(R.id.expandableTextView);
         expandableTextView.setText(Html.fromHtml("<b>" + "Description \n" + "</b>" + "<br />") + "this is just random");
@@ -127,17 +137,6 @@ public class ProductDetailActivity extends AppCompatActivity implements View.OnC
         linearLayoutQuantity.setOnClickListener(this);
         droppyMenu = droppyBuilder.build();
         viewPager = (ViewPager) findViewById(R.id.viewpager_custom);
-        /*
-         String[] images = {
-                "http://loremflickr.com/320/240",
-                "http://loremflickr.com/320/240/dog",
-                "http://loremflickr.com/g/320/240/paris",
-                "http://loremflickr.com/320/240/brazil",
-                "http://loremflickr.com/320/240/rio",
-                "http://loremflickr.com/320/240/paris",
-                "http://loremflickr.com/320/240/all"
-        };
-        * */
         arrayList.add("http://loremflickr.com/320/380");
         arrayList.add("http://loremflickr.com/320/380/dog");
         arrayList.add("http://loremflickr.com/g/320/380/paris");
@@ -146,8 +145,113 @@ public class ProductDetailActivity extends AppCompatActivity implements View.OnC
         CircleIndicator indicator = (CircleIndicator) findViewById(R.id.indicator_custom);
         viewPager.setAdapter(adapter);
         indicator.setViewPager(viewPager);
+        String color[] = {"#000000", "#ffffff", "#eeeeee", "#0f0fee", "#456789"};
+        initcolor(color);
+        int[] sizes = {12, 14, 16, 18, 20, 22, 24};
+        initSize(sizes);
+
 
     }
+
+    private void initSize(final int[] sizes) {
+        final ArrayList<Integer> sizeIds = new ArrayList<>();
+        for (int row = 0; row < 1; row++) {
+            for (int i = 0; i < sizes.length; i++) {
+                final RadioButton rdbtn = new RadioButton(context);
+                rdbtn.setId(i);
+                sizeIds.add(i);
+                rdbtn.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.customradiosize, null));
+                int height = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 40, getResources().getDisplayMetrics());
+                RadioGroup.LayoutParams param = new RadioGroup.LayoutParams(height, height);
+                int margin = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 10, getResources().getDisplayMetrics());
+                param.setMargins(margin, margin, margin, margin);
+                rdbtn.setLayoutParams(param);
+                rdbtn.setButtonDrawable(R.color.transparent);
+
+                // android:button="@android:color/transparent"
+                rdbtn.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                    @Override
+                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                        if (isChecked) {
+                            int position = rdbtn.getId();
+                            showMessage("size" + sizes[position]);
+                        } else {
+
+                        }
+                    }
+                });
+                radioGroupSize.addView(rdbtn);
+            }
+        }
+        LinearLayout linearLayout = (LinearLayout) findViewById(R.id.linearlayoutTextViewSize);
+        for (int row = 0; row < 1; row++) {
+
+            for (int i = 0; i < sizes.length; i++) {
+                final TextView rdbtn = new TextView(context);
+                rdbtn.setId((row * 2) + i + 1);
+                int height = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 40, getResources().getDisplayMetrics());
+                LinearLayout.LayoutParams param = new LinearLayout.LayoutParams(height, height);
+                int margin = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 10, getResources().getDisplayMetrics());
+                param.setMargins(margin, margin, margin, margin);
+                rdbtn.setLayoutParams(param);
+                rdbtn.setText("" + sizes[i]);
+                rdbtn.setGravity(Gravity.CENTER);
+                rdbtn.setBackground(ResourcesCompat.getDrawable(getResources(), R.color.transparent, null));
+                linearLayout.addView(rdbtn);
+            }
+        }
+
+    }
+
+    private void initcolor(final String[] color) {
+        ArrayList<Integer> colorids = new ArrayList<>();
+        for (int row = 0; row < 1; row++) {
+
+            for (int i = 0; i < color.length; i++) {
+                final RadioButton rdbtn = new RadioButton(context);
+                rdbtn.setId(i);
+                colorids.add((row * 2) + i + 1);
+                rdbtn.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.customradio, null));
+                int height = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 40, getResources().getDisplayMetrics());
+                RadioGroup.LayoutParams param = new RadioGroup.LayoutParams(height, height);
+                int margin = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 10, getResources().getDisplayMetrics());
+                param.setMargins(margin, margin, margin, margin);
+                rdbtn.setLayoutParams(param);
+                rdbtn.setButtonDrawable(R.color.transparent);
+
+                // android:button="@android:color/transparent"
+                rdbtn.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                    @Override
+                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                        if (isChecked) {
+                            int position = rdbtn.getId();
+                            showMessage(color[position]);
+                        } else {
+
+                        }
+                    }
+                });
+                radioGroupColor.addView(rdbtn);
+            }
+        }
+        LinearLayout linearLayout = (LinearLayout) findViewById(R.id.linearlayoutViewColor);
+        for (int row = 0; row < 1; row++) {
+
+            for (int i = 0; i < color.length; i++) {
+                final View rdbtn = new View(context);
+                rdbtn.setId((row * 2) + i + 1);
+                int height = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 40, getResources().getDisplayMetrics());
+                LinearLayout.LayoutParams param = new LinearLayout.LayoutParams(height, height);
+                int margin = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 10, getResources().getDisplayMetrics());
+                param.setMargins(margin, margin, margin, margin);
+                rdbtn.setLayoutParams(param);
+                rdbtn.setBackgroundColor(Color.parseColor(color[i]));
+                linearLayout.addView(rdbtn);
+            }
+        }
+
+    }
+
 
     private void showPopup(String description) {
         boolean wrapInScrollView = true;
