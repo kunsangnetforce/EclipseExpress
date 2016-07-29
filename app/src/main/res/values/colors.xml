@@ -19,7 +19,12 @@
     <color name="colorText">#FFFFFF</color>
     <color name="colorDivider">#B6B6B6</color>
     <color name="textviewBackground1">#ef1940</color>
-    <color name="colorPrimaryLight">#1479d2</color>
+    <color name="colorPrimaryLight">#f55b28</color>
     <color name="greendark">#185807</color>
     <color name="twitter">#42b1ec</color>
+    <color name="greydark">#787575</color>
+    <color name="md_blue_grey_50">#ECEFF1</color>
+    <color name="blue">#44a2ea</color>
+    <color name="black_transparent">#96000000</color>
+    <color name="white_transparent">#73d2cdcd</color>
 </resources>

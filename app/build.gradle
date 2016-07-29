@@ -37,7 +37,11 @@ dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     testCompile 'junit:junit:4.12'
 
-
+    //SUB-DEPENDENCIES
+    //Android-Iconics - used to provide an easy API for icons
+    compile('com.twitter.sdk.android:twitter:1.14.1@aar') {
+        transitive = true;
+    }
 
     compile 'com.android.support:appcompat-v7:24.0.0'
     compile 'com.facebook.android:facebook-android-sdk:4.+'
@@ -50,12 +54,11 @@ dependencies {
     compile 'com.mikepenz:actionitembadge:3.2.6@aar'
     compile 'com.squareup.retrofit2:retrofit:2.0.0-beta4'
     compile 'com.squareup.retrofit2:converter-gson:2.0.0-beta4'
-
-    //SUB-DEPENDENCIES
-    //Android-Iconics - used to provide an easy API for icons
     compile 'com.mikepenz:iconics-core:2.6.6@aar'
-    compile('com.twitter.sdk.android:twitter:1.14.1@aar') {
-        transitive = true;
-    }
+    compile 'me.relex:circleindicator:1.2.1@aar'
+    compile 'com.shehabic.droppy:Droppy:0.5.1@aar'
+    compile 'at.blogc:expandabletextview:1.0.3'
+    compile 'com.afollestad.material-dialogs:core:0.8.6.0'
+
 
 }

@@ -1,4 +1,4 @@
-package com.netforceinfotech.eclipseexpress.com.netforceinfotech.eclipseexpress.common;
+package com.netforceinfotech.eclipseexpress.general;
 
 import android.widget.EditText;
 
@@ -32,14 +32,14 @@ public class Validation {
 
         String text = editText.getText().toString().trim();
         // clearing the error, if it was previously set by some other values
-        editText.setError(null);
+       // editText.setError(null);
 
         // text required and editText is blank, so return false
         if (required && !hasText(editText)) return false;
 
         // pattern doesn't match so returning false
         if (required && !Pattern.matches(regex, text)) {
-            editText.setError(errMsg);
+            //editText.setError(errMsg);
             return false;
         }
         ;
@@ -52,11 +52,11 @@ public class Validation {
     public static boolean hasText(EditText editText) {
 
         String text = editText.getText().toString().trim();
-        editText.setError(null);
+        //editText.setError(null);
 
         // length 0 means there is no text
         if (text.length() == 0) {
-            editText.setError(REQUIRED_MSG);
+          //  editText.setError(REQUIRED_MSG);
             return false;
         }
 

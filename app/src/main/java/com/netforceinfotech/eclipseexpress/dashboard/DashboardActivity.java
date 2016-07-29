@@ -14,7 +14,7 @@ import android.view.WindowManager;
 
 import com.mikepenz.actionitembadge.library.ActionItemBadge;
 import com.netforceinfotech.eclipseexpress.R;
-import com.netforceinfotech.eclipseexpress.dashboard.dashboardcontent.DashboardFragment;
+import com.netforceinfotech.eclipseexpress.dashboard.dashboardcontentnew.DashboardFragment;
 import com.netforceinfotech.eclipseexpress.dashboard.navigation.NavigationFragment;
 
 
