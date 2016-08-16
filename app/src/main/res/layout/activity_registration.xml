@@ -250,7 +250,7 @@
                     android:layout_marginLeft="28dp"
                     android:layout_marginRight="28dp"
                     android:layout_marginTop="12dp"
-                    android:backgroundTint="@color/white"
+                    android:background="@color/white"
                     android:text="@string/getstarted"
                     android:textAllCaps="false"
                     android:textColor="@color/colorPrimary"

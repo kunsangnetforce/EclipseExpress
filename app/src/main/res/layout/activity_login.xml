@@ -29,12 +29,13 @@
                 android:src="@drawable/logo" />
 
         </LinearLayout>
+
         <com.twitter.sdk.android.core.identity.TwitterLoginButton
-            android:visibility="gone"
             android:id="@+id/twitter_login_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"/>
+            android:layout_centerInParent="true"
+            android:visibility="gone" />
 
         <ScrollView
             android:layout_width="match_parent"
@@ -141,10 +142,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="56dp"
                     android:layout_below="@+id/linearlayoutpassword"
-                    android:layout_marginLeft="28dp"
-                    android:layout_marginRight="28dp"
+                    android:layout_marginLeft="32dp"
+                    android:layout_marginRight="32dp"
                     android:layout_marginTop="8dp"
-                    android:backgroundTint="@color/white"
+                    android:background="@color/white"
                     android:text="@string/login"
                     android:textAllCaps="false"
                     android:textColor="@color/colorPrimary"
@@ -152,7 +153,7 @@
 
                     />
 
-                <com.balysv.materialripple.MaterialRippleLayout
+                <com.andexert.library.RippleView
                     android:id="@+id/rippleForgotPassword"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -168,7 +169,7 @@
                         android:text="Forgot your password?"
                         android:textColor="@color/colorText"
                         android:textStyle="bold" />
-                </com.balysv.materialripple.MaterialRippleLayout>
+                </com.andexert.library.RippleView>
 
                 <LinearLayout
                     android:id="@+id/linearlayoutOr"
@@ -218,16 +219,16 @@
                         <android.support.v7.widget.AppCompatButton
                             android:layout_width="160dp"
                             android:layout_height="60dp"
-                            android:backgroundTint="@color/com_facebook_blue"
+                            android:background="@color/com_facebook_blue"
                             android:drawableLeft="@drawable/ic_facebook"
                             android:drawablePadding="6dp"
                             android:gravity="left|center_vertical"
                             android:padding="12dp"
                             android:text="@string/facebook"
                             android:textAllCaps="false"
-                            android:textStyle="normal"
                             android:textColor="@color/colorText"
-                            android:textSize="22sp" />
+                            android:textSize="22sp"
+                            android:textStyle="normal" />
 
                     </LinearLayout>
 
@@ -239,10 +240,10 @@
 
 
                         <android.support.v7.widget.AppCompatButton
+                            android:id="@+id/buttonTwitter"
                             android:layout_width="160dp"
                             android:layout_height="60dp"
-                            android:id="@+id/buttonTwitter"
-                            android:backgroundTint="@color/twitter"
+                            android:background="@color/twitter"
                             android:drawableLeft="@drawable/ic_twitter"
                             android:drawablePadding="6dp"
                             android:gravity="left|center_vertical"
@@ -255,7 +256,7 @@
                     </LinearLayout>
                 </LinearLayout>
 
-                <com.balysv.materialripple.MaterialRippleLayout
+                <com.andexert.library.RippleView
                     android:id="@+id/rippleRegister"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -281,7 +282,7 @@
                             android:layout_marginTop="2dp"
                             android:background="@color/colorText" />
                     </LinearLayout>
-                </com.balysv.materialripple.MaterialRippleLayout>
+                </com.andexert.library.RippleView>
             </RelativeLayout>
         </ScrollView>
     </LinearLayout>

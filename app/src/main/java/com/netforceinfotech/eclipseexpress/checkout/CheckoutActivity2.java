@@ -1,15 +1,19 @@
 package com.netforceinfotech.eclipseexpress.checkout;
 
 import android.content.Context;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.CompoundButton;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 
+import com.andexert.library.RippleView;
 import com.netforceinfotech.eclipseexpress.R;
 
 import java.util.ArrayList;
@@ -24,6 +28,8 @@ public class CheckoutActivity2 extends AppCompatActivity implements CompoundButt
     ArrayList<Data> datas = new ArrayList<>();
     RadioButton radioButtonPayPal, radioButtonCheck, radioButtonBankTransfer;
     CircleImageView circleImageViewpaypal, circleImageViewcheck, circleImageViewbanktransfer;
+    private LinearLayout linearLayoutTransfer, linearLayoutCheck, linearLayoutPaypal;
+    RippleView rippleTransfer,rippleCheck,ripplePaypal;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,9 +51,19 @@ public class CheckoutActivity2 extends AppCompatActivity implements CompoundButt
     }
 
     private void initview() {
+        rippleCheck= (RippleView) findViewById(R.id.rippleCheck);
+        ripplePaypal= (RippleView) findViewById(R.id.ripplePaypal);
+        rippleTransfer= (RippleView) findViewById(R.id.rippleTransfer);
+        linearLayoutCheck = (LinearLayout) findViewById(R.id.linearlayoutCheck);
+        linearLayoutPaypal = (LinearLayout) findViewById(R.id.linearlayoutPayPal);
+        linearLayoutTransfer = (LinearLayout) findViewById(R.id.linearlayoutTransfer);
+        linearLayoutCheck.setOnClickListener(this);
+        linearLayoutPaypal.setOnClickListener(this);
+        linearLayoutTransfer.setOnClickListener(this);
         radioButtonBankTransfer = (RadioButton) findViewById(R.id.radioDirectBankTransfer);
         radioButtonCheck = (RadioButton) findViewById(R.id.radioCheckPayment);
         radioButtonPayPal = (RadioButton) findViewById(R.id.radioPaypal);
+        radioButtonPayPal.setChecked(true);
         circleImageViewpaypal = (CircleImageView) findViewById(R.id.imageviewPaypal);
         circleImageViewcheck = (CircleImageView) findViewById(R.id.imageViewCheck);
         circleImageViewbanktransfer = (CircleImageView) findViewById(R.id.imageViewBankTransfer);
@@ -66,29 +82,39 @@ public class CheckoutActivity2 extends AppCompatActivity implements CompoundButt
 
     @Override
     public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+
         switch (compoundButton.getId()) {
             case R.id.radioCheckPayment:
-                if(b){
-                    circleImageViewpaypal.setImageResource(R.drawable.ic_radio_custom);
-                }
-                else {
-                    circleImageViewpaypal.setImageResource(R.drawable.ic_circle);
+                Log.i("kunsangcheck", "radioCheckPayment  " + b);
+
+                if (b) {
+                    rippleCheck.setBackgroundColor(ContextCompat.getColor(context, R.color.grey));
+                    circleImageViewcheck.setImageResource(R.drawable.ic_radio_custom);
+                } else {
+                    rippleCheck.setBackgroundColor(ContextCompat.getColor(context, R.color.white));
+                    circleImageViewcheck.setImageResource(R.drawable.ic_circle);
                 }
                 break;
             case R.id.radioDirectBankTransfer:
-                if(b){
-                    circleImageViewpaypal.setImageResource(R.drawable.ic_radio_custom);
-                }
-                else {
-                    circleImageViewpaypal.setImageResource(R.drawable.ic_circle);
+                Log.i("kunsangcheck", "radioDirectBankTransfer  " + b);
+
+                if (b) {
+                    rippleTransfer.setBackgroundColor(ContextCompat.getColor(context, R.color.grey));
+                    circleImageViewbanktransfer.setImageResource(R.drawable.ic_radio_custom);
+                } else {
+                    rippleTransfer.setBackgroundColor(ContextCompat.getColor(context, R.color.white));
+                    circleImageViewbanktransfer.setImageResource(R.drawable.ic_circle);
                 }
 
                 break;
             case R.id.radioPaypal:
-                if(b){
+                Log.i("kunsangcheck", "radioPaypal  " + b);
+
+                if (b) {
+                    ripplePaypal.setBackgroundColor(ContextCompat.getColor(context, R.color.grey));
                     circleImageViewpaypal.setImageResource(R.drawable.ic_radio_custom);
-                }
-                else {
+                } else {
+                    ripplePaypal.setBackgroundColor(ContextCompat.getColor(context, R.color.white));
                     circleImageViewpaypal.setImageResource(R.drawable.ic_circle);
                 }
 
@@ -100,11 +126,14 @@ public class CheckoutActivity2 extends AppCompatActivity implements CompoundButt
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.imageviewPaypal:
+            case R.id.linearlayoutPayPal:
                 radioButtonPayPal.setChecked(true);
                 break;
+            case R.id.linearlayoutCheck:
             case R.id.imageViewCheck:
                 radioButtonCheck.setChecked(true);
                 break;
+            case R.id.linearlayoutTransfer:
             case R.id.imageViewBankTransfer:
                 radioButtonBankTransfer.setChecked(true);
                 break;
