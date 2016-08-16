@@ -44,8 +44,12 @@
         <activity
             android:name=".productdetail.ProductDetailActivity"
             android:windowSoftInputMode="adjustResize" />
-        <activity android:name=".checkout.CheckoutActivity1" />
-        <activity android:name=".checkout.CheckoutActivity2"></activity>
+        <activity android:name=".checkout.CheckoutActivity1"
+            android:windowSoftInputMode="adjustResize"
+            />
+        <activity android:name=".checkout.CheckoutActivity2"
+            android:windowSoftInputMode="adjustResize"
+            ></activity>
     </application>
 
 </manifest>

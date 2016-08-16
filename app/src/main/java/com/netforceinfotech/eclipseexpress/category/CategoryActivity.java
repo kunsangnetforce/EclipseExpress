@@ -10,19 +10,24 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
+import android.widget.Toast;
 
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.mikepenz.actionitembadge.library.ActionItemBadge;
 import com.netforceinfotech.eclipseexpress.R;
 
 import java.util.ArrayList;
 
-public class CategoryActivity extends AppCompatActivity {
+public class CategoryActivity extends AppCompatActivity implements View.OnClickListener {
 
     private Toolbar toolbar;
     Context context;
     private RecyclerView recyclerView;
     ArrayList<Data> datas = new ArrayList<>();
+    LinearLayout linearLayoutSortby, linearLayoutFilter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,18 +36,27 @@ public class CategoryActivity extends AppCompatActivity {
         context = this;
         setupToolBar(getResources().getString(R.string.app_name));
         recyclerView = (RecyclerView) findViewById(R.id.recycler);
+        initView();
         setupData();
         setupRecycler();
     }
+
+    private void initView() {
+        linearLayoutFilter = (LinearLayout) findViewById(R.id.linearlayoutFilter);
+        linearLayoutSortby = (LinearLayout) findViewById(R.id.linearlayoutSort);
+        linearLayoutSortby.setOnClickListener(this);
+        linearLayoutFilter.setOnClickListener(this);
+    }
+
     @Override
-    public boolean onCreateOptionsMenu(Menu menu)
-    {
+    public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.dashboard, menu);
         ActionItemBadge.update(((AppCompatActivity) context), menu.findItem(R.id.add_to_cart), ContextCompat.getDrawable(context, R.drawable.ic_cart_black)
                 , ActionItemBadge.BadgeStyles.GREY, 3);
         return true;
     }
+
     private void setupData() {
         for (int i = 0; i < 20; i++) {
             datas.add(new Data("", "", ""));
@@ -65,6 +79,7 @@ public class CategoryActivity extends AppCompatActivity {
         getSupportActionBar().setTitle(app_name);
 
     }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle item selection
@@ -78,5 +93,37 @@ public class CategoryActivity extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.linearlayoutSort:
+                showSortbyPopup();
+                break;
+            case R.id.linearlayoutFilter:
+                showMessage("Open filter activity");
+                break;
+        }
+    }
+
+    private void showSortbyPopup() {
+        final String[] sortlist = {"Popularity", "Price - Low to High", "Price - High to low", "Newest First"};
+        new MaterialDialog.Builder(this)
+                .title("Sort by")
+                .items(sortlist)
+                .itemsCallbackSingleChoice(-1, new MaterialDialog.ListCallbackSingleChoice() {
+                    @Override
+                    public boolean onSelection(MaterialDialog dialog, View view, int which, CharSequence text) {
+                        showMessage("clicked:" + sortlist[which]);
+                        return true;
+                    }
+                })
+                .positiveText(R.string.ok)
+                .show();
+    }
+
+    private void showMessage(String s) {
+        Toast.makeText(CategoryActivity.this, s, Toast.LENGTH_SHORT).show();
     }
 }

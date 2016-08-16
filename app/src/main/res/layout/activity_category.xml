@@ -22,8 +22,62 @@
         android:layout_width="match_parent"
         android:layout_height="56dp"
         android:background="@color/white"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:weightSum="100">
 
+        <com.balysv.materialripple.MaterialRippleLayout
+            android:layout_width="0dp"
+            android:layout_height="56dp"
+            android:layout_weight="50">
+
+            <LinearLayout
+                android:id="@+id/linearlayoutSort"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:background="@drawable/border_bg_thinright"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_sort" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="6dp"
+                    android:text="Sort"
+                    android:textStyle="bold" />
+            </LinearLayout>
+        </com.balysv.materialripple.MaterialRippleLayout>
+
+        <com.balysv.materialripple.MaterialRippleLayout
+            android:layout_width="0dp"
+            android:layout_height="56dp"
+            android:layout_weight="50">
+
+            <LinearLayout
+                android:id="@+id/linearlayoutFilter"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:background="@drawable/border_bg_thinleft"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_filter" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="6dp"
+                    android:text="Filter"
+                    android:textStyle="bold" />
+            </LinearLayout>
+        </com.balysv.materialripple.MaterialRippleLayout>
     </LinearLayout>
 
     <android.support.v7.widget.RecyclerView

@@ -32,5 +32,6 @@
     <string name="choose_color">Choose a colour for item</string>
     <string name="ok">OK</string>
     <string name="size_available">Size available for this item</string>
+    <string name="postal">Postal code</string>
 
 </resources>
