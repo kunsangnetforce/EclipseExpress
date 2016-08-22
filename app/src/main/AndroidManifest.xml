@@ -50,7 +50,10 @@
         <activity
             android:name=".checkout.CheckoutActivity2"
             android:windowSoftInputMode="adjustResize" />
-        <activity android:name=".Editprofile.Edit_profile_activity"></activity>
+        <activity android:name=".Editprofile.Edit_profile_activity"
+            android:windowSoftInputMode="adjustResize"/>
+        <activity android:name=".ProductCategory.Productlist_category_activity" />
+        <activity android:name=".Account.User_account"></activity>
     </application>
 
 </manifest>

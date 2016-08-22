@@ -20,7 +20,7 @@ public class Edit_profile_activity extends AppCompatActivity {
         setContentView(R.layout.activity_edit_profile_activity);
 
         context=this;
-        setupToolBar("Lorem ipsum");
+        setupToolBar("Edit Profile");
     }
 
 

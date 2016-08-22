@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -61,6 +62,7 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
         setupDummyData();
         setupView(view);
         setuprecyclers(view);
+      //  GridLayoutManager gridLayoutManager=new GridLayoutManager(context,3);
         return view;
     }
     @Override
