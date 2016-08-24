@@ -54,6 +54,7 @@ public class DashboardActivity extends AppCompatActivity {
         return true;
     }
 
+
     private void setupToolBar() {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);

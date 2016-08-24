@@ -2,6 +2,7 @@ package com.netforceinfotech.eclipseexpress.dashboard.navigation;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -20,6 +21,9 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.netforceinfotech.eclipseexpress.Account.User_account;
+import com.netforceinfotech.eclipseexpress.Editprofile.Edit_profile_activity;
+import com.netforceinfotech.eclipseexpress.ProductCategory.Productlist_category_activity;
 import com.netforceinfotech.eclipseexpress.R;
 
 import java.util.ArrayList;
@@ -52,6 +56,7 @@ public class NavigationFragment extends Fragment implements View.OnClickListener
     TextView textViewName;
     private ImageView imageViewGB;
     private ExpandableListView expListView;
+    private ImageView edit_profile_imgview;
     private ExpandableListAdapter listAdapter;
     private ArrayList<String> listDataHeader;
     private HashMap<String, List<String>> listDataChild;
@@ -75,6 +80,9 @@ public class NavigationFragment extends Fragment implements View.OnClickListener
         loginPreferences = getActivity().getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
         loginPrefsEditor = loginPreferences.edit();
         expListView = (ExpandableListView) view.findViewById(R.id.lvExp);
+        edit_profile_imgview=(ImageView)view.findViewById(R.id.img_edit_profile);
+        edit_profile_imgview.setOnClickListener(this);
+
         // preparing list data
         prepareListData();
         listAdapter = new ExpandableListAdapter(context, listDataHeader, listDataChild);
@@ -87,9 +95,20 @@ public class NavigationFragment extends Fragment implements View.OnClickListener
     public void itemClicked(View view, int groupview, int childview) {
         try {
             showMessage("groupbiew: " + groupview + "\nchildview: " + childview);
+            if((groupview==1)&(childview==0))
+            {
+                Intent i=new Intent(getActivity(), User_account.class);
+                startActivity(i);
+            }
+            else if(groupview==0)
+            {
+                Intent i=new Intent(getActivity(), Productlist_category_activity.class);
+                startActivity(i);
+            }
 
             listAdapter.notifyDataSetChanged();
             mDrawerLayout.closeDrawers();
+
 
         } catch (Exception e) {
 
@@ -213,6 +232,10 @@ public class NavigationFragment extends Fragment implements View.OnClickListener
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
+            case R.id.img_edit_profile:
+                Intent i=new Intent(getActivity(), Edit_profile_activity.class);
+                startActivity(i);
+                break;
         }
     }
 
