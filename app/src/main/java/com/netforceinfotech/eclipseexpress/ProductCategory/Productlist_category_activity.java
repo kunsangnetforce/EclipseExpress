@@ -18,7 +18,6 @@ import com.mikepenz.actionitembadge.library.ActionItemBadge;
 import com.netforceinfotech.eclipseexpress.ProductCategory.Flat_offers.Flat_offer_adapter;
 import com.netforceinfotech.eclipseexpress.ProductCategory.Show_subcategory.Product_category_grid_adapter;
 
-import com.netforceinfotech.eclipseexpress.ProductCategory.Top_brands.Topbrands_adapter;
 import com.netforceinfotech.eclipseexpress.ProductCategory.Top_selling.Top_selling_adapter;
 import com.netforceinfotech.eclipseexpress.ProductCategory.sub_category_brands_offers.Brands_offers_adapter;
 import com.netforceinfotech.eclipseexpress.R;
