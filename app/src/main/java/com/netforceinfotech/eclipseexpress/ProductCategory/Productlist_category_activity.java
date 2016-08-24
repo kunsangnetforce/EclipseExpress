@@ -18,6 +18,7 @@ import com.mikepenz.actionitembadge.library.ActionItemBadge;
 import com.netforceinfotech.eclipseexpress.ProductCategory.Flat_offers.Flat_offer_adapter;
 import com.netforceinfotech.eclipseexpress.ProductCategory.Show_subcategory.Product_category_grid_adapter;
 
+import com.netforceinfotech.eclipseexpress.ProductCategory.Top_brands.Topbrands_adapter;
 import com.netforceinfotech.eclipseexpress.ProductCategory.Top_selling.Top_selling_adapter;
 import com.netforceinfotech.eclipseexpress.ProductCategory.sub_category_brands_offers.Brands_offers_adapter;
 import com.netforceinfotech.eclipseexpress.R;
@@ -43,17 +44,17 @@ public class Productlist_category_activity extends AppCompatActivity {
     private Top_selling_adapter top_selling_adapter;
 
     private LinearLayoutManager subcat_brands_offers__linearlayout_manager,
-    flat_offers_linearlayout_manager,top_selling_linearlayout_manager,toprated_linearlayout_manager;
+    flat_offers_linearlayout_manager,top_selling_linearlayout_manager,toprated_linearlayout_manager,topbrands_linearlayout_manager;
 
-    GridLayoutManager gridLayoutManager,topbrands_linearlayout_manager;
+    GridLayoutManager gridLayoutManager;
     String Sub_cat_names[]={"Top & Tees","Coat & Jackets","Shirts","Jeans","Pants","Shorts"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_productlist_category_activity);
-        topbrands_linearlayout_manager = new GridLayoutManager(this,3);
-        subcat_brands_offers__linearlayout_manager= new GridLayoutManager(this,3);
+        topbrands_linearlayout_manager =  new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);;
+        subcat_brands_offers__linearlayout_manager= new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         top_selling_linearlayout_manager= new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         toprated_linearlayout_manager= new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         flat_offers_linearlayout_manager= new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);

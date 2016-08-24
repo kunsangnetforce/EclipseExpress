@@ -50,6 +50,6 @@ public class Flat_offer_adapter extends RecyclerView.Adapter<CommomHolder_Flat_o
 
     @Override
     public int getItemCount() {
-        return 3;
+        return 6;
     }
 }
