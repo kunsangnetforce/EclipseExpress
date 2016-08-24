@@ -50,6 +50,6 @@ public class Top_selling_adapter extends RecyclerView.Adapter<CommomHolder_Top_s
 
     @Override
     public int getItemCount() {
-        return 3;
+        return 6;
     }
 }

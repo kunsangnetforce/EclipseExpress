@@ -50,6 +50,6 @@ public class Brands_offers_adapter extends RecyclerView.Adapter<CommomHolder_off
 
     @Override
     public int getItemCount() {
-        return 3;
+        return 6;
     }
 }
