@@ -25,7 +25,7 @@
         android:layout_width="match_parent"
         android:layout_below="@id/appbar"
         android:layout_height="match_parent"
-        android:background="@color/grey"
+        android:background="#E8E8E8"
         android:tag="@string/dashboardfragment"
         tools:context=".dashboard.dashboardcontent.DashboardFragment">
 
@@ -49,12 +49,15 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-    <RelativeLayout
+
+        <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <android.support.v7.widget.RecyclerView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:padding="4dp"
+            android:clipToPadding="false"
             android:id="@+id/RecyclerView_subcategory" />
         <RelativeLayout
             android:layout_width="match_parent"
@@ -87,6 +90,7 @@ android:layout_marginRight="10dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_below="@+id/show_category"
+            android:background="#ffffff"
             android:id="@+id/rl_top_brands">
 
             <TextView
@@ -96,6 +100,7 @@ android:layout_marginRight="10dp"
                 android:text="Top Brands"
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp"
+                android:layout_marginLeft="10dp"
                 android:textColor="@color/colorSecondaryText"
                 android:id="@+id/textView16" />
         </RelativeLayout>
@@ -150,7 +155,7 @@ android:layout_marginRight="10dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_below="@+id/rl_top_brands2"
-
+            android:background="#ffffff"
             android:id="@+id/relativeLayout3" >
 
             <TextView
@@ -158,6 +163,7 @@ android:layout_marginRight="10dp"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:text="Offers"
+                android:layout_marginLeft="10dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp"
                 android:textColor="@color/colorSecondaryText"
@@ -208,7 +214,10 @@ android:layout_marginRight="10dp"
 
             <ImageView
                 android:layout_width="match_parent"
-                android:layout_height="25dp"
+                android:layout_height="wrap_content"
+                android:scaleType="fitXY"
+                android:padding="10dp"
+                android:src="@drawable/david"
                 android:id="@+id/imageView7" />
 
         </RelativeLayout>
@@ -217,14 +226,16 @@ android:layout_marginRight="10dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_below="@+id/relativeLayout4"
+            android:background="#ffffff"
             android:id="@+id/relativeLayout5" >
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="Top Selling"
+                android:text="Flat offers"
                 android:layout_margin="5dp"
+                android:layout_marginLeft="10dp"
 
                 android:textColor="@color/colorSecondaryText"
                 android:id="@+id/textView20" />
@@ -242,11 +253,11 @@ android:layout_marginRight="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:id="@+id/android.support.v7.widget.RecyclerView" />
+                android:id="@+id/recycler_flat_offers" />
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_below="@+id/android.support.v7.widget.RecyclerView"
+                android:layout_below="@+id/recycler_flat_offers"
                 android:layout_height="match_parent" >
 
                 <TextView
@@ -274,6 +285,7 @@ android:layout_marginRight="10dp"
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="#ffffff"
             android:layout_below="@+id/relativeLayout6"
             android:id="@+id/relativeLayout7" >
 
@@ -281,7 +293,8 @@ android:layout_marginRight="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="Top Rated"
+                android:text="Top Selling"
+                android:layout_marginLeft="10dp"
                 android:layout_margin="5dp"
                 android:textColor="@color/colorSecondaryText"
                 android:id="@+id/textView22" />
@@ -298,11 +311,11 @@ android:layout_marginRight="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:id="@+id/android.support.v7.widget.RecyclerView2" />
+                android:id="@+id/recycler_top_selling" />
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_below="@+id/android.support.v7.widget.RecyclerView2"
+                android:layout_below="@+id/recycler_top_selling"
                 android:layout_marginBottom="10dp"
                 android:layout_height="match_parent" >
 
@@ -327,7 +340,66 @@ android:layout_marginRight="10dp"
                     android:id="@+id/imageView9" />
             </RelativeLayout>
         </RelativeLayout>
-    </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#ffffff"
+            android:layout_below="@+id/relativeLayout8"
+            android:id="@+id/relativeLayout9" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="Top Rated"
+                android:layout_marginLeft="10dp"
+                android:layout_margin="5dp"
+                android:textColor="@color/colorSecondaryText"
+                android:id="@+id/textView29" />
+        </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_below="@+id/relativeLayout9"
+                android:id="@+id/relativeLayout10"
+                android:layout_height="match_parent" >
+
+                <android.support.v7.widget.RecyclerView
+                    app:layoutManager="android.support.v7.widget.LinearLayoutManager"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:id="@+id/recycyle_top_rated" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_below="@+id/recycyle_top_rated"
+                    android:layout_marginBottom="10dp"
+                    android:layout_height="match_parent" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:text="View all"
+                        android:layout_marginRight="10dp"
+                        android:textColor="@color/colorSecondaryText"
+                        android:layout_centerVertical="true"
+                        android:layout_toLeftOf="@+id/imageView12"
+                        android:id="@+id/textView30" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="5dp"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/ic_keyboard_arrow_right_black"
+                        android:layout_alignParentRight="true"
+                        android:id="@+id/imageView12" />
+                </RelativeLayout>
+            </RelativeLayout>
+        </RelativeLayout>
     </RelativeLayout>
 
 </ScrollView>

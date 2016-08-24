@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 
 import com.mikepenz.actionitembadge.library.ActionItemBadge;
 import com.netforceinfotech.eclipseexpress.R;
@@ -39,6 +40,20 @@ public class Edit_profile_activity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle(app_name);
 
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle item selection
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                overridePendingTransition(R.anim.left_to_right, R.anim.right_to_left);
+                return true;
+
+
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
 }
