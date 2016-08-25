@@ -62,6 +62,7 @@ dependencies {
     compile 'at.blogc:expandabletextview:1.0.3'
     compile 'com.afollestad.material-dialogs:core:0.8.6.0'
     compile 'com.github.jd-alexander:LikeButton:0.2.0'
+    compile 'com.balysv:material-ripple:1.0.2'
 
 
 }

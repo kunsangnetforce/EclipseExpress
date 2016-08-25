@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -17,6 +18,7 @@ import android.widget.ScrollView;
 import android.widget.Toast;
 
 import com.netforceinfotech.eclipseexpress.R;
+import com.netforceinfotech.eclipseexpress.discover.DiscoverActivity;
 import com.netforceinfotech.eclipseexpress.search.SearchActivity;
 
 import java.util.ArrayList;
@@ -39,6 +41,7 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
     private CommomAdapter commomAdapter;
     private StikkyHeaderBuilder stikkyHeader;
     private Intent intent;
+    AppCompatButton discover_category;
 
     public DashboardFragment() {
         // Required empty public constructor
@@ -60,11 +63,18 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
 
         commomAdapter = new CommomAdapter(context, commomDatas);
         setupDummyData();
+        initializeview(view);
         setupView(view);
         setuprecyclers(view);
       //  GridLayoutManager gridLayoutManager=new GridLayoutManager(context,3);
         return view;
     }
+
+    private void initializeview(View v) {
+        discover_category=(AppCompatButton)v.findViewById(R.id.buttonDiscover);
+
+    }
+
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState)
     {
@@ -131,13 +141,21 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
         switch (view.getId()) {
             case R.id.buttonDiscover:
                 showMessage("Clicked");
+                intent=new Intent(context, DiscoverActivity.class);
+                startActivity(intent);
+                ((AppCompatActivity)context).overridePendingTransition(R.anim.enter, R.anim.exit);
                 break;
 
             case R.id.relativeLayoutSearch:
                 intent=new Intent(context, SearchActivity.class);
                 startActivity(intent);
                 ((AppCompatActivity)context).overridePendingTransition(R.anim.enter, R.anim.exit);
-                break;}
+                break;
+
+
+
+
+        }
     }
 
     private void showMessage(String clicked) {

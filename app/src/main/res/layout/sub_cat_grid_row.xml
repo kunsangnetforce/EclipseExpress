@@ -8,7 +8,7 @@
     >
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="wrap_content"
+        android:layout_width="140dp"
         android:layout_height="wrap_content"
         android:background="#E7E7E7"
         android:gravity="center"
@@ -17,9 +17,10 @@
         android:orientation="vertical">
 
         <ImageView
-            android:scaleType="fitXY"
+            android:scaleType="fitEnd"
             android:layout_width="140dp"
-            android:layout_height="140dp"
+            android:background="#ffffff"
+            android:layout_height="100dp"
            android:layout_marginTop="5dp"
             android:src="@drawable/david" />
 

@@ -23,6 +23,15 @@
         android:layout_width="match_parent"
         android:background="#E8E8E8"
         android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation=""
+            android:layout_height="match_parent">
+
+
+
+
+
 
         <LinearLayout
             android:orientation="vertical"
@@ -64,6 +73,8 @@
                         android:id="@+id/input_fname"
                         style="@style/StyledTilEditText"
                         android:layout_width="match_parent"
+                      android:layout_margin="5dp"
+                        android:singleLine="true"
                         android:layout_height="wrap_content"
                         android:textColorHint="#E8E8E8"
                         android:hint="First Name" />
@@ -89,6 +100,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textColorHint="#E8E8E8"
+                        android:singleLine="true"
                         style="@style/StyledTilEditText"
                         android:hint="Last Name" />
 
@@ -112,6 +124,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textColorHint="#E8E8E8"
+                        android:singleLine="true"
                         style="@style/StyledTilEditText"
                         android:hint="Date Of Birth" />
 
@@ -136,6 +149,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textColorHint="#E8E8E8"
+                        android:singleLine="true"
                         style="@style/StyledTilEditText"
                         android:hint="Email id" />
 
@@ -221,6 +235,7 @@
                     </RelativeLayout>
                 </LinearLayout>
             </LinearLayout>
+        </LinearLayout>
         </LinearLayout>
     </RelativeLayout>
 

@@ -29,6 +29,7 @@ public class ViewPagerAdapter extends PagerAdapter {
 
     @Override
     public int getCount() {
+
         return imageList.size();
     }
 

@@ -214,9 +214,10 @@ android:layout_marginRight="10dp"
 
             <ImageView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:scaleType="fitXY"
-                android:padding="10dp"
+                android:layout_height="180dp"
+                android:scaleType="fitCenter"
+android:layout_margin="10dp"
+                android:background="#ffffff"
                 android:src="@drawable/david"
                 android:id="@+id/imageView7" />
 
@@ -429,7 +430,7 @@ android:layout_marginRight="10dp"
                     <ImageView
                         android:id="@+id/imageView"
                         android:layout_width="match_parent"
-                        android:scaleType="fitXY"
+                        android:scaleType="fitCenter"
                         android:layout_height="match_parent"
                         android:layout_marginBottom="25dp"
                         android:src="@drawable/david" />
