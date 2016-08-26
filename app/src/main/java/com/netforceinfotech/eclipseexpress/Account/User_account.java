@@ -1,5 +1,6 @@
 package com.netforceinfotech.eclipseexpress.Account;
 
+import android.content.Intent;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -23,11 +24,11 @@ import it.carlom.stikkyheader.core.StikkyHeaderBuilder;
 import it.carlom.stikkyheader.core.animator.AnimatorBuilder;
 import it.carlom.stikkyheader.core.animator.HeaderStikkyAnimator;
 
-public class User_account extends AppCompatActivity {
+public class User_account extends AppCompatActivity implements View.OnClickListener {
     private StikkyHeaderBuilder.ScrollViewBuilder stikkyHeader;
     private SwipyRefreshLayout mSwipyRefreshLayout;
     private ScrollView ScrollView_Commom;
-    private LinearLayout layoutcontainer;
+    private LinearLayout layoutcontainer,ll_myorders;
     private Toolbar toolbar;
 
 
@@ -44,6 +45,8 @@ public class User_account extends AppCompatActivity {
 //        mSwipyRefreshLayout = (SwipyRefreshLayout)findViewById(R.id.swipyrefreshlayout);
         ScrollView_Commom = (ScrollView) findViewById(R.id.scroll_down);
         layoutcontainer=(LinearLayout)findViewById(R.id.l_container);
+        ll_myorders=(LinearLayout)findViewById(R.id.ll_myorders);
+        ll_myorders.setOnClickListener(this);
 //        mSwipyRefreshLayout.setOnRefreshListener(new SwipyRefreshLayout.OnRefreshListener() {
 //            @Override
 //            public void onRefresh(SwipyRefreshLayoutDirection direction) {
@@ -72,6 +75,16 @@ public class User_account extends AppCompatActivity {
                 .minHeightHeaderDim(R.dimen.min_height_header3)
                 .animator(new ParallaxStikkyAnimator())
                 .build();
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId())
+        {case R.id.ll_myorders:
+            //Intent i =new Intent(User_account.this,)
+
+        }
+
     }
 
 
