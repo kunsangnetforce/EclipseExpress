@@ -53,6 +53,7 @@
 
                         <LinearLayout
                             android:orientation="vertical"
+                            android:id="@+id/ll_myorders"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent">
 
@@ -88,6 +89,7 @@
 
                         <LinearLayout
                             android:orientation="vertical"
+                            android:id="@+id/ll_mywishlist"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent">
                             <TextView
@@ -123,6 +125,7 @@
                         <LinearLayout
                             android:orientation="vertical"
                             android:layout_width="match_parent"
+                            android:id="@+id/ll_myreview"
                             android:layout_height="match_parent">
                             <TextView
                                 android:layout_width="wrap_content"
@@ -156,6 +159,7 @@
                         </LinearLayout>
                         <LinearLayout
                             android:orientation="vertical"
+                            android:id="@+id/ll_my_address"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent">
 
@@ -181,29 +185,11 @@
                                 android:layout_marginTop="5dp"
                                 android:layout_marginBottom="5dp"
                                 android:id="@+id/textView13" />
-                            <View
-                                android:layout_width="match_parent"
-                                android:layout_height="1dp"
-                                android:layout_margin="10dp"
-                                android:background="@color/colorPrimary"
-                                 />
                         </LinearLayout>
                         <LinearLayout
                             android:orientation="vertical"
                             android:layout_width="match_parent"
                             android:layout_height="200dp">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:textAppearance="?android:attr/textAppearanceSmall"
-                                android:text="Account Setting"
-
-                                android:textColor="@color/colorPrimary"
-android:layout_marginTop="10dp"
-                                android:layout_marginBottom="10dp"
-                                android:layout_gravity="center_horizontal"
-                                android:id="@+id/textView14" />
 
                             <Button
                                 style="?android:attr/buttonStyleSmall"

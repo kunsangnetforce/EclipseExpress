@@ -22,7 +22,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.netforceinfotech.eclipseexpress.Account.User_account;
+import com.netforceinfotech.eclipseexpress.ChangePassword.change_password;
 import com.netforceinfotech.eclipseexpress.Editprofile.Edit_profile_activity;
+import com.netforceinfotech.eclipseexpress.Helpcenter.Help_center;
 import com.netforceinfotech.eclipseexpress.ProductCategory.Productlist_category_activity;
 import com.netforceinfotech.eclipseexpress.R;
 
@@ -105,6 +107,16 @@ public class NavigationFragment extends Fragment implements View.OnClickListener
                 Intent i=new Intent(getActivity(), Productlist_category_activity.class);
                 startActivity(i);
             }
+            else if(groupview==2 &childview==1)
+            {
+                Intent i=new Intent(getActivity(),change_password.class);
+                startActivity(i);
+            }
+            else if(groupview==5)
+            {
+                Intent i=new Intent(getActivity(),Help_center.class);
+                startActivity(i);
+            }
 
             listAdapter.notifyDataSetChanged();
             mDrawerLayout.closeDrawers();
@@ -126,6 +138,9 @@ public class NavigationFragment extends Fragment implements View.OnClickListener
         listDataHeader.add("Category");
         listDataHeader.add("Account");
         listDataHeader.add("Settings");
+        listDataHeader.add("Rate App");
+        listDataHeader.add("Share App");
+        listDataHeader.add("Help Centre");
 
         // Adding child data
         List<String> top250 = new ArrayList<String>();
@@ -142,12 +157,22 @@ public class NavigationFragment extends Fragment implements View.OnClickListener
         top250.add("Phone and Accessories");
         top250.add("Computer and Networking");
         top250.add("VIEW ALL CATEGORIES");
-        List<String> nowShowing = new ArrayList<String>();
 
-        List<String> comingSoon = new ArrayList<String>();
+        List<String> Settings_data = new ArrayList<String>();
+        Settings_data.add("Subscription");
+        Settings_data.add("Change Password");
+
+        List<String> account = new ArrayList<String>();
+        List<String> ratethisapp = new ArrayList<String>();
+        List<String> help_center = new ArrayList<String>();
+        List<String> share_app = new ArrayList<String>();
+
         listDataChild.put(listDataHeader.get(0), top250); // Header, Child data
-        listDataChild.put(listDataHeader.get(1), nowShowing);
-        listDataChild.put(listDataHeader.get(2), comingSoon);
+        listDataChild.put(listDataHeader.get(1), account); // Header, Child data
+        listDataChild.put(listDataHeader.get(2), Settings_data);
+        listDataChild.put(listDataHeader.get(3), ratethisapp); // Header, Child data
+        listDataChild.put(listDataHeader.get(4), help_center); // Header, Child data
+        listDataChild.put(listDataHeader.get(5), share_app);
     }
 
     @Override

@@ -81,8 +81,8 @@
                             android:layout_height="24dp"
                             android:src="@drawable/ic_account" />
                     </LinearLayout>
-
                     <EditText
+
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="85"

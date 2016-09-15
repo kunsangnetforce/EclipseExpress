@@ -1,5 +1,6 @@
 package com.netforceinfotech.eclipseexpress.ProductCategory;
 
+import android.content.Intent;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -22,12 +23,13 @@ import com.netforceinfotech.eclipseexpress.ProductCategory.Top_brands.Topbrands_
 import com.netforceinfotech.eclipseexpress.ProductCategory.Top_selling.Top_selling_adapter;
 import com.netforceinfotech.eclipseexpress.ProductCategory.sub_category_brands_offers.Brands_offers_adapter;
 import com.netforceinfotech.eclipseexpress.R;
+import com.netforceinfotech.eclipseexpress.category.CategoryActivity;
 
 import it.carlom.stikkyheader.core.StikkyHeaderBuilder;
 import it.carlom.stikkyheader.core.animator.AnimatorBuilder;
 import it.carlom.stikkyheader.core.animator.HeaderStikkyAnimator;
 
-public class Productlist_category_activity extends AppCompatActivity {
+public class Productlist_category_activity extends AppCompatActivity implements View.OnClickListener {
    private StikkyHeaderBuilder stikkyHeader;
 
     private ScrollView ScrollView_Commom,scrollView;
@@ -38,6 +40,7 @@ public class Productlist_category_activity extends AppCompatActivity {
     private Product_category_grid_adapter category_adapter;
     private Topbrands_adapter topbrands_adapter;
     private Flat_offer_adapter flat_offer_adapter;
+    RelativeLayout rl_show_categories,rl_top_brands,rl_offers,rl_flat_offers;
 
 
     private Brands_offers_adapter brands_offers_adapter;
@@ -53,7 +56,7 @@ public class Productlist_category_activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_productlist_category_activity);
-        topbrands_linearlayout_manager =  new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);;
+        topbrands_linearlayout_manager =  new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         subcat_brands_offers__linearlayout_manager= new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         top_selling_linearlayout_manager= new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         toprated_linearlayout_manager= new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
@@ -93,6 +96,14 @@ public class Productlist_category_activity extends AppCompatActivity {
     private void initilaizeview() {
         ScrollView_Commom = (ScrollView) findViewById(R.id.scroll_down4);
         layoutcontainer=(RelativeLayout)findViewById(R.id.cat_layout_holder);
+        rl_top_brands=(RelativeLayout)findViewById(R.id.rl_top_brands2);
+        rl_offers=(RelativeLayout)findViewById(R.id.rl_offers);
+        rl_flat_offers=(RelativeLayout)findViewById(R.id.rl_flat_offers);
+        rl_show_categories=(RelativeLayout)findViewById(R.id.show_category);
+        rl_offers.setOnClickListener(this);
+        rl_top_brands.setOnClickListener(this);
+        rl_show_categories.setOnClickListener(this);
+        rl_flat_offers.setOnClickListener(this);
 
 
     }
@@ -164,6 +175,34 @@ public class Productlist_category_activity extends AppCompatActivity {
                 .build();
     }
 
+    @Override
+    public void onClick(View view) {
+        switch (view.getId())
+        {
+        case R.id.show_category:
+            Intent i=new Intent(Productlist_category_activity.this, CategoryActivity.class);
+            startActivity(i);
+            break;
+
+            case R.id.rl_top_brands2:
+                Intent i2=new Intent(Productlist_category_activity.this, CategoryActivity.class);
+                startActivity(i2);
+                break;
+
+            case R.id.rl_offers:
+                Intent i3=new Intent(Productlist_category_activity.this, CategoryActivity.class);
+                startActivity(i3);
+                break;
+            case R.id.rl_flat_offers:
+                Intent i4=new Intent(Productlist_category_activity.this, CategoryActivity.class);
+                startActivity(i4);
+                break;
+
+
+
+
+        }
+    }
 
 
     private class ParallaxStikkyAnimator extends HeaderStikkyAnimator {

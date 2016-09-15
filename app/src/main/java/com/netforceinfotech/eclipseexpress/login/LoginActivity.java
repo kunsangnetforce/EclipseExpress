@@ -33,7 +33,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 {
 
      Context context;
-     TextView textViewRegistration;
+     TextView textViewRegistration,textViewForgotPassword;
      private Intent intent;
      TwitterLoginButton loginButton;
      Button twitter_button;
@@ -60,6 +60,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             window.setStatusBarColor(ContextCompat.getColor(getApplicationContext(), R.color.grey));
         }
         textViewRegistration = (TextView) findViewById(R.id.textViewRegistration);
+        textViewForgotPassword = (TextView) findViewById(R.id.textViewForgotPassword);
+
         twitter_button=(Button) findViewById(R.id.buttonTwitter);
 
         email_edittext = (EditText) findViewById(R.id.email);
@@ -80,6 +82,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         setupTwitter();
         textViewRegistration.setOnClickListener(this);
+        textViewForgotPassword.setOnClickListener(this);
 
         findViewById(R.id.buttonLogin).setOnClickListener(this);
     }
@@ -234,6 +237,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 logoutTwitter();
 
                 break;
+            case R.id.textViewForgotPassword:
+                intent = new Intent(context, Forgot_password.class);
+                startActivity(intent);
+                overridePendingTransition(R.anim.enter, R.anim.exit);
+                break;
+
         }
 
     }
