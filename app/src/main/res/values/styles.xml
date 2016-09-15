@@ -51,5 +51,12 @@
         <item name="android:theme">@style/StyledTilEditTextTheme</item>
         <item name="android:paddingTop">4dp</item>
     </style>
+    <style name="RatingBar" parent="Theme.AppCompat">
+        <item name="colorControlNormal">@color/red</item>
+        <item name="colorControlActivated">@color/tw__medium_gray</item>
+        <item name="android:progressDrawable">@drawable/ratingbar_red</item>
+        <item name="android:minHeight">35dip</item>
+        <item name="android:maxHeight">35dip</item>
+    </style>
 
 </resources>

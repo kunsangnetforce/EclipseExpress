@@ -50,10 +50,18 @@
         <activity
             android:name=".checkout.CheckoutActivity2"
             android:windowSoftInputMode="adjustResize" />
-        <activity android:name=".Editprofile.Edit_profile_activity"
-            />
+        <activity android:name=".Editprofile.Edit_profile_activity" />
         <activity android:name=".ProductCategory.Productlist_category_activity" />
-        <activity android:name=".Account.User_account"></activity>
+        <activity android:name=".Account.User_account" />
+        <activity android:name=".Account.Reviews.Review" />
+        <activity android:name=".Account.My_orders.My_orders" />
+        <activity android:name=".Account.Mywishlist.MyWishlist_activity" />
+        <activity android:name=".Account.Address.My_address_activity" />
+        <activity android:name=".Account.Reviews.Review_data" />
+        <activity android:name=".Add_to_cart.Add_to_card_activity" />
+        <activity android:name=".ChangePassword.change_password" />
+        <activity android:name=".login.Forgot_password" />
+        <activity android:name=".Helpcenter.Help_center"></activity>
     </application>
 
 </manifest>

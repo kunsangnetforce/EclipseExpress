@@ -8,6 +8,7 @@ import android.widget.BaseExpandableListAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.ToggleButton;
 
 import com.netforceinfotech.eclipseexpress.R;
 
@@ -58,6 +59,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 
         TextView txtListChild = (TextView) convertView
                 .findViewById(R.id.lblListItem);
+        ToggleButton tg_button=(ToggleButton)convertView.findViewById(R.id.toggleButton);
 
         txtListChild.setText(childText);
         final View finalConvertView = convertView;
@@ -67,6 +69,13 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
                 click.itemClicked(finalConvertView, groupPosition, childPosition);
             }
         });
+       if(groupPosition==2  && childPosition==0)
+       {
+           tg_button.setVisibility(View.VISIBLE);
+       }
+        else {
+           tg_button.setVisibility(View.GONE);
+       }
         return convertView;
     }
 
@@ -112,6 +121,16 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
             case 2:
                 imageViewIcon.setImageResource(R.drawable.ic_settings);
                 break;
+            case 3:
+                imageViewIcon.setImageResource(R.drawable.rate_usicon);
+                break;
+            case 4:
+                imageViewIcon.setImageResource(R.drawable.share_app);
+                break;
+            case 5:
+                imageViewIcon.setImageResource(R.drawable.help_centreicon);
+                break;
+
         }
         if (_listDataChild.get(_listDataHeader.get(groupPosition)).size() == 0) {
             imageView.setVisibility(View.GONE);
@@ -132,6 +151,9 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
                 notifyDataSetChanged();
             }
         }
+
+
+
         TextView lblListHeader = (TextView) convertView
                 .findViewById(R.id.lblListHeader);
         lblListHeader.setText(headerTitle);

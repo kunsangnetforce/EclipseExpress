@@ -1,6 +1,7 @@
 package com.netforceinfotech.eclipseexpress.dashboard;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -10,12 +11,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.WindowManager;
 
 import com.mikepenz.actionitembadge.library.ActionItemBadge;
+import com.netforceinfotech.eclipseexpress.Add_to_cart.Add_to_card_activity;
 import com.netforceinfotech.eclipseexpress.R;
 import com.netforceinfotech.eclipseexpress.dashboard.dashboardcontentnew.DashboardFragment;
 import com.netforceinfotech.eclipseexpress.dashboard.navigation.NavigationFragment;
+import com.netforceinfotech.eclipseexpress.login.Send_veri_mail;
 
 
 public class DashboardActivity extends AppCompatActivity {
@@ -23,6 +27,7 @@ public class DashboardActivity extends AppCompatActivity {
     private NavigationFragment drawer;
     private Toolbar toolbar;
     private DashboardFragment homeFragment;
+
     Context context;
 
     @Override
@@ -79,4 +84,23 @@ public class DashboardActivity extends AppCompatActivity {
         String tagName = homeFragment.getClass().getName();
         replaceFragment(homeFragment, tagName);
     }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle item selection
+        switch (item.getItemId()) {
+            case R.id.add_to_cart:
+                //finish();
+                Intent i =new Intent(DashboardActivity.this, Add_to_card_activity.class);
+                startActivity(i);
+                overridePendingTransition(R.anim.left_to_right, R.anim.right_to_left);
+                return true;
+
+
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+
 }

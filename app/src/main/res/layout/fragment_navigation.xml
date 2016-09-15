@@ -31,7 +31,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="6dp"
-                android:text="vicky donor"
+                android:text="Kunsang"
                 android:textColor="@color/colorText"
                 android:textStyle="bold" />
         </LinearLayout>
@@ -50,11 +50,7 @@
                 android:layout_height="30dp"
                 android:src="@drawable/ic_pencil_box" />
 
-            <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_marginLeft="6dp"
-                android:src="@drawable/ic_dots_vertical" />
+
         </LinearLayout>
 
         <LinearLayout
