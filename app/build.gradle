@@ -67,5 +67,6 @@ dependencies {
     compile 'com.github.jd-alexander:LikeButton:0.2.0'
     compile 'com.balysv:material-ripple:1.0.2'
     compile 'com.github.techery:properratingbar:0.0.5'
-    compile "com.koushikdutta.ion:ion:1.1.5"
+
+    compile 'com.koushikdutta.ion:ion:2.+'
 }

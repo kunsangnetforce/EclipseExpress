@@ -82,7 +82,7 @@
                             android:src="@drawable/ic_account" />
                     </LinearLayout>
                     <EditText
-
+android:id="@+id/etusername"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="85"
@@ -125,6 +125,7 @@
                         android:layout_weight="85"
                         android:background="@android:color/transparent"
                         android:hint="@string/email"
+                        android:id="@+id/etEmail"
                         android:inputType="textEmailAddress"
                         android:textColor="@color/colorText"
                         android:textColorHint="@color/colorText"></EditText>
@@ -162,6 +163,7 @@
                         android:layout_weight="85"
                         android:background="@android:color/transparent"
                         android:hint="@string/password"
+                        android:id="@+id/etpassword"
                         android:inputType="textPassword"
                         android:textColor="@color/colorText"
                         android:textColorHint="@color/colorText"></EditText>
@@ -199,6 +201,8 @@
                         android:layout_weight="85"
                         android:background="@android:color/transparent"
                         android:hint="@string/confirmpassword"
+                        android:id="@+id/etconfirmpassword"
+
                         android:inputType="textPassword"
                         android:textColor="@color/colorText"
                         android:textColorHint="@color/colorText"></EditText>
@@ -237,6 +241,9 @@
                         android:background="@android:color/transparent"
                         android:hint="@string/mobile"
                         android:inputType="phone"
+                        android:id="@+id/etmob"
+                        android:maxLength="10"
+
                         android:textColor="@color/colorText"
                         android:textColorHint="@color/colorText"></EditText>
                 </LinearLayout>

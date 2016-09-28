@@ -47,7 +47,7 @@ public class ProductDetailActivity extends AppCompatActivity implements View.OnC
     ArrayList<String> arrayList = new ArrayList<>();
     LinearLayout linearLayoutQuantity;
     DroppyMenuPopup droppyMenu;
-    private EditText editText;
+    public EditText editText;
     TextView textViewQuantity;
     ExpandableTextView expandableTextView;
     CardView cardviewDescription, cardViewTag, cardViewReview;
@@ -61,7 +61,7 @@ public class ProductDetailActivity extends AppCompatActivity implements View.OnC
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_detail);
         context = this;
-        setupToolBar("Lorem ipsum");
+        setupToolBar("Product Detail");
         initview();
     }
 

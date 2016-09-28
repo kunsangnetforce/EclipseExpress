@@ -132,6 +132,7 @@
                         android:layout_weight="85"
                         android:background="@android:color/transparent"
                         android:hint="@string/password"
+                        android:id="@+id/password_edittext"
                         android:inputType="textPassword"
                         android:textColor="@color/colorText"
                         android:textColorHint="@color/colorText"></EditText>

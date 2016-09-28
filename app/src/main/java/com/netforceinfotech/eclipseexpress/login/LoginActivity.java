@@ -1,7 +1,9 @@
 package com.netforceinfotech.eclipseexpress.login;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
@@ -17,6 +19,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.gson.JsonObject;
+import com.koushikdutta.async.future.FutureCallback;
+import com.koushikdutta.ion.Ion;
 import com.netforceinfotech.eclipseexpress.R;
 import com.netforceinfotech.eclipseexpress.general.Validation;
 import com.netforceinfotech.eclipseexpress.dashboard.DashboardActivity;
@@ -29,6 +34,16 @@ import com.twitter.sdk.android.core.TwitterSession;
 import com.twitter.sdk.android.core.identity.TwitterLoginButton;
 import com.twitter.sdk.android.core.models.User;
 
+import java.security.KeyManagementException;
+import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
+import java.security.cert.CertificateException;
+import java.security.cert.X509Certificate;
+
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.TrustManager;
+import javax.net.ssl.X509TrustManager;
+
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener
 {
 
@@ -37,7 +52,14 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
      private Intent intent;
      TwitterLoginButton loginButton;
      Button twitter_button;
-     EditText email_edittext;
+     EditText email_edittext,password_edittext;
+    ProgressDialog _progressDialog;
+    public  static  String MyPREFERENCES="Ecllipse";
+    SharedPreferences sharedpreferences;
+
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -65,6 +87,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         twitter_button=(Button) findViewById(R.id.buttonTwitter);
 
         email_edittext = (EditText) findViewById(R.id.email);
+        password_edittext=(EditText)findViewById(R.id.password_edittext);
 
         twitter_button.setOnClickListener(this);
         TwitterSession twitterSession = TwitterCore.getInstance().getSessionManager().getActiveSession();
@@ -83,18 +106,28 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         setupTwitter();
         textViewRegistration.setOnClickListener(this);
         textViewForgotPassword.setOnClickListener(this);
+        _progressDialog = new ProgressDialog(this);
+
+        setupSharedpreference();
+
 
         findViewById(R.id.buttonLogin).setOnClickListener(this);
+    }
+
+    private void setupSharedpreference() {
+    sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+
+
+
+
     }
 
     private void setupTwitter()
     {
         loginButton = (TwitterLoginButton) findViewById(R.id.twitter_login_button);
-        loginButton.setCallback(new Callback<TwitterSession>()
-        {
+        loginButton.setCallback(new Callback<TwitterSession>() {
             @Override
-            public void success(Result<TwitterSession> result)
-            {
+            public void success(Result<TwitterSession> result) {
                 // The TwitterSession is also available through:
                 // Twitter.getInstance().core.getSessionManager().getActiveSession()
              /*   TwitterSession session = result.data;
@@ -113,6 +146,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
 
             }
+
             @Override
             public void failure(TwitterException exception) {
                 Log.d("TwitterKit", "Login with Twitter failure", exception);
@@ -220,10 +254,76 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
 
                 if (Validation.isEmailAddress(email_edittext,false))
+
                 {
-                    intent = new Intent(context, DashboardActivity.class);
-                    startActivity(intent);
-                    overridePendingTransition(R.anim.enter, R.anim.exit);
+                    if(email_data.length()!=0|| password_edittext.getText().length()!=0) {
+
+                        _progressDialog.show();
+
+                        String url="https://netforcesales.com/eclipseexpress/web_api.php?type=login&email="+email_edittext.getText().toString()+"&password="+password_edittext.getText().toString();
+
+
+                        Log.e("url", url);
+                        setupSelfSSLCert();
+                        Ion.with(this)
+                                .load(url)
+                                .progressDialog(_progressDialog)
+                                .asJsonObject()
+
+                                .setCallback(new FutureCallback<JsonObject>() {
+                                    @Override
+                                    public void onCompleted(Exception e, JsonObject result) {
+                                        if (result != null)
+
+                                        {
+
+
+                                            String status = result.get("status").toString();
+                                            if(status.contains("sussess"))
+                                            {
+                                                JsonObject userData = (JsonObject) result.get("userData");
+                                                String message = userData.get("customer_id").toString();
+                                                 Log.e("customer_id",message);
+                                                ShowMessage("Sucessfully login");
+                                                intent = new Intent(context, DashboardActivity.class);
+                                                startActivity(intent);
+                                                overridePendingTransition(R.anim.enter, R.anim.exit);
+                                            }
+                                            else{
+                                                String message = result.get("message").toString();
+                                                ShowMessage(message);
+                                            }
+
+
+                                            //String message = result.get("message").toString();
+
+                                            Log.e("status", "st" + status);
+
+                                            _progressDialog.dismiss();
+
+
+                                        } else {
+                                            Log.e("error", e.toString());
+                                        }
+
+//                                        JsonObject js =result;
+//
+//                                        String status=result.get("status").toString();
+//                                        String customer_id=result.get("customer_id").toString();
+//                                        String message=result.get("message").toString();
+//                                        Log.e("status","st"+status+"cust"+customer_id+"mes"+message);
+
+
+                                        // do stuff with the result or error
+                                    }
+                                });
+
+
+
+                    }
+                    else{
+                        ShowMessage("can't leave blank");
+                    }
                 }
                 else
                 {
@@ -246,4 +346,63 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         }
 
     }
+
+    private void ShowMessage(String s) {
+
+        Toast.makeText(getApplicationContext(),s, Toast.LENGTH_SHORT).show();
+
+    }
+
+
+
+    private static class Trust implements X509TrustManager {
+
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public void checkClientTrusted(final X509Certificate[] chain, final String authType)
+                throws CertificateException {
+
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public void checkServerTrusted(final X509Certificate[] chain, final String authType)
+                throws CertificateException {
+
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public X509Certificate[] getAcceptedIssuers() {
+            return new X509Certificate[0];
+        }
+
+    }
+
+    public  void setupSelfSSLCert() {
+        final Trust trust = new Trust();
+        final TrustManager[] trustmanagers = new TrustManager[]{trust};
+        SSLContext sslContext;
+        try {
+            sslContext = SSLContext.getInstance("TLS");
+            sslContext.init(null, trustmanagers, new SecureRandom());
+            Ion.getInstance(getApplicationContext(), "rest").getHttpClient().getSSLSocketMiddleware().setTrustManagers(trustmanagers);
+            Ion.getInstance(getApplicationContext(), "rest").getHttpClient().getSSLSocketMiddleware().setSSLContext(sslContext);
+        } catch (final NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        } catch (final KeyManagementException e) {
+            e.printStackTrace();
+        }
+    }
+
 }
+
+
+
+
