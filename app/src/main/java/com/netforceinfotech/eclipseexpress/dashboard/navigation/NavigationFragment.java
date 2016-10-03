@@ -1,9 +1,11 @@
 package com.netforceinfotech.eclipseexpress.dashboard.navigation;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -11,6 +13,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +24,11 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+import com.koushikdutta.async.future.FutureCallback;
+import com.koushikdutta.ion.Ion;
+import com.mvc.imagepicker.ImagePicker;
 import com.netforceinfotech.eclipseexpress.Account.User_account;
 import com.netforceinfotech.eclipseexpress.ChangePassword.change_password;
 import com.netforceinfotech.eclipseexpress.Editprofile.Edit_profile_activity;
@@ -28,9 +36,18 @@ import com.netforceinfotech.eclipseexpress.Helpcenter.Help_center;
 import com.netforceinfotech.eclipseexpress.ProductCategory.Productlist_category_activity;
 import com.netforceinfotech.eclipseexpress.R;
 
+import java.security.KeyManagementException;
+import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
+import java.security.cert.CertificateException;
+import java.security.cert.X509Certificate;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.TrustManager;
+import javax.net.ssl.X509TrustManager;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -46,22 +63,28 @@ public class NavigationFragment extends Fragment implements View.OnClickListener
     public static ActionBarDrawerToggle mDrawerToggle;
     public static DrawerLayout mDrawerLayout;
     boolean mUserLearnedDrawer;
+    private static final int IMAGE_PICKER_SELECT = 999;
     boolean mFromSavedInstance;
     View view;
     public static final String PREFS_NAME = "call_recorder";
     private SharedPreferences loginPreferences;
+    List<String> categoryids;
+    List<String> categoryname;
+
+
     public static SharedPreferences.Editor loginPrefsEditor;
     private Context context;
     TextView footer;
     RelativeLayout header;
-    CircleImageView circleImageViewProfilePic;
-    TextView textViewName;
+    public static  CircleImageView circleImageViewProfilePic;
+    TextView textViewName,textViewmobile_no,textView_email;
     private ImageView imageViewGB;
     private ExpandableListView expListView;
     private ImageView edit_profile_imgview;
     private ExpandableListAdapter listAdapter;
     private ArrayList<String> listDataHeader;
     private HashMap<String, List<String>> listDataChild;
+    ProgressDialog _progressDialog;
 
     public NavigationFragment() {
         // Required empty public constructor
@@ -73,17 +96,34 @@ public class NavigationFragment extends Fragment implements View.OnClickListener
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_navigation, container, false);
+        _progressDialog=new ProgressDialog(context);
         initView();
         return view;
     }
 
     private void initView() {
+        //prepare textviewdata
+        categoryname=new ArrayList<>();
+        categoryids=new ArrayList<>();
+        textViewName=(TextView)view.findViewById(R.id.tv_username);
+        textViewmobile_no=(TextView)view.findViewById(R.id.tv_mobno);
+        textView_email=(TextView)view.findViewById(R.id.tv_email_profile);
+
         //sharedprefrance
         loginPreferences = getActivity().getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
         loginPrefsEditor = loginPreferences.edit();
+
         expListView = (ExpandableListView) view.findViewById(R.id.lvExp);
         edit_profile_imgview=(ImageView)view.findViewById(R.id.img_edit_profile);
         edit_profile_imgview.setOnClickListener(this);
+//circle imageview
+
+        circleImageViewProfilePic=(CircleImageView)view.findViewById(R.id.imageViewDP);
+        circleImageViewProfilePic.setOnClickListener(this);
+       //ImagePicker.setMinQuality(600, 600);
+
+
+
 
         // preparing list data
         prepareListData();
@@ -100,7 +140,10 @@ public class NavigationFragment extends Fragment implements View.OnClickListener
             if((groupview==1)&(childview==0))
             {
                 Intent i=new Intent(getActivity(), User_account.class);
+//                i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(i);
+
             }
             else if(groupview==0)
             {
@@ -131,6 +174,69 @@ public class NavigationFragment extends Fragment implements View.OnClickListener
 
 
     private void prepareListData() {
+
+
+
+
+        String url="https://netforcesales.com/eclipseexpress/web_api.php?type=category";
+
+
+
+        setupSelfSSLCert();
+        Ion.with(this)
+                .load(url)
+                .progressDialog(_progressDialog)
+                .asJsonObject()
+
+                .setCallback(new FutureCallback<JsonObject>() {
+                    @Override
+                    public void onCompleted(Exception e, JsonObject result) {
+                        if (result != null)
+
+                        {
+
+
+                            String status = result.get("status").toString();
+                            if(status.contains("success")) {
+                                JsonObject categories=  result.getAsJsonObject("result");
+
+
+
+
+                                JsonArray personen = categories.getAsJsonArray("categories");
+                                for (int i = 0; i < personen.size(); i++) {
+                                    JsonObject user = personen.get(i).getAsJsonObject();
+                                    String category_name=user.get("name").getAsString();
+                                    String category_id=user.get("category_id").getAsString();
+                                    categoryids.add(category_id);
+                                    categoryname.add(category_name);
+
+                                }
+
+                                Log.e("categoryids", categoryids.toString());
+                                Log.e("categoryname",categoryname.toString());
+
+
+
+                            }
+
+                            _progressDialog.dismiss();
+
+                        } else {
+                            Log.e("error", e.toString());
+                        }
+
+//                                        JsonObject js =result;
+//
+//                                        String status=result.get("status").toString();
+//                                        String customer_id=result.get("customer_id").toString();
+//                                        String message=result.get("message").toString();
+//                                        Log.e("status","st"+status+"cust"+customer_id+"mes"+message);
+
+
+                        // do stuff with the result or error
+                    }
+                });
         listDataHeader = new ArrayList<String>();
         listDataChild = new HashMap<String, List<String>>();
 
@@ -167,12 +273,18 @@ public class NavigationFragment extends Fragment implements View.OnClickListener
         List<String> help_center = new ArrayList<String>();
         List<String> share_app = new ArrayList<String>();
 
-        listDataChild.put(listDataHeader.get(0), top250); // Header, Child data
+        listDataChild.put(listDataHeader.get(0), categoryname); // Header, Child data
         listDataChild.put(listDataHeader.get(1), account); // Header, Child data
         listDataChild.put(listDataHeader.get(2), Settings_data);
         listDataChild.put(listDataHeader.get(3), ratethisapp); // Header, Child data
         listDataChild.put(listDataHeader.get(4), help_center); // Header, Child data
         listDataChild.put(listDataHeader.get(5), share_app);
+    }
+
+    private void Showmessage(String message) {
+
+
+        Toast.makeText(context,message,Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -261,6 +373,13 @@ public class NavigationFragment extends Fragment implements View.OnClickListener
                 Intent i=new Intent(getActivity(), Edit_profile_activity.class);
                 startActivity(i);
                 break;
+            case R.id.imageViewDP:
+                ImagePicker.pickImage(getActivity(), "Select your image:");
+                //Intent k = new Intent(Intent.ACTION_PICK,android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                //startActivityForResult(k, IMAGE_PICKER_SELECT);
+//                Intent i=new Intent(getActivity(), Edit_profile_activity.class);
+//                startActivity(i);
+                break;
         }
     }
 
@@ -275,6 +394,84 @@ public class NavigationFragment extends Fragment implements View.OnClickListener
         transaction.commit();
     }
 
+    public void setdata(String username, String mobno, String email) {
 
+        textViewName.setText(username);
+        textViewmobile_no.setText(mobno);
+        textView_email.setText(email);
+
+
+
+    }
+
+
+    private static class Trust implements X509TrustManager {
+
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public void checkClientTrusted(final X509Certificate[] chain, final String authType)
+                throws CertificateException {
+
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public void checkServerTrusted(final X509Certificate[] chain, final String authType)
+                throws CertificateException {
+
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public X509Certificate[] getAcceptedIssuers() {
+            return new X509Certificate[0];
+        }
+
+    }
+
+    public  void setupSelfSSLCert() {
+        final Trust trust = new Trust();
+        final TrustManager[] trustmanagers = new TrustManager[]{trust};
+        SSLContext sslContext;
+        try {
+            sslContext = SSLContext.getInstance("TLS");
+            sslContext.init(null, trustmanagers, new SecureRandom());
+            Ion.getInstance(context, "rest").getHttpClient().getSSLSocketMiddleware().setTrustManagers(trustmanagers);
+            Ion.getInstance(context, "rest").getHttpClient().getSSLSocketMiddleware().setSSLContext(sslContext);
+        } catch (final NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        } catch (final KeyManagementException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        super.onActivityResult(requestCode, resultCode, data);
+
+        Bitmap bitmap = ImagePicker.getImageFromResult(getActivity(), requestCode, resultCode, data);
+        if (bitmap != null) {
+            Log.e("bitmap",bitmap.toString());
+
+            circleImageViewProfilePic.setImageBitmap(bitmap);
+        }
+        else{
+            Log.e("bitmap not null","bitmap not null");
+        }
+        // TODO do something with the bitmap
+    }
 }
+
+
+
 

@@ -33,7 +33,7 @@ import javax.net.ssl.X509TrustManager;
 
 public class RegistrationActivity extends AppCompatActivity implements View.OnClickListener{
     Button registration;
-    EditText username,EmailId,password,confirm_password,Mobile_no;
+    EditText Fname,Lname,EmailId,password,confirm_password,Mobile_no;
     private Pattern pattern;
     private Matcher matcher;
     SSLEngine engine;
@@ -62,7 +62,8 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
     private void initview() {
         _progressDialog = new ProgressDialog(this);
         registration=(Button)findViewById(R.id.buttonGetstarted);
-        username=(EditText)findViewById(R.id.etusername);
+        Fname=(EditText)findViewById(R.id.etfirstname);
+        Lname=(EditText)findViewById(R.id.et_lastname);
         EmailId=(EditText)findViewById(R.id.etEmail);
         password=(EditText)findViewById(R.id.etpassword);
         confirm_password=(EditText)findViewById(R.id.etconfirmpassword);
@@ -95,7 +96,7 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
     }
 
     private void Applyvalidation() {
-        if(username.getText().length()!=0||password.getText().length()!=0||confirm_password.getText().length()!=0||EmailId.getText().length()!=0||Mobile_no.getText().length()!=0) {
+        if(Fname.getText().length()!=0||password.getText().length()!=0||confirm_password.getText().length()!=0||EmailId.getText().length()!=0||Mobile_no.getText().length()!=0||Lname.getText().length()!=0) {
 String email=EmailId.getText().toString();
             if (isValidEmail(email)) {
                 if(password.getText().toString().equals(confirm_password.getText().toString())) {
@@ -106,7 +107,7 @@ String email=EmailId.getText().toString();
 
                         _progressDialog.show();
 
-String url="https://netforcesales.com/eclipseexpress/web_api.php?type=registration&email="+EmailId.getText().toString()+"&username="+username.getText().toString()+"" +
+String url="https://netforcesales.com/eclipseexpress/web_api.php?type=registration&email="+EmailId.getText().toString()+"&firstname="+Fname.getText().toString()+"" +"&lastname="+Lname.getText().toString()+""+
         "&password="+password.getText().toString()+"&mobile_no="+Mobile_no.getText().toString()+"&website_id=1&store_id=1&group_id=1";
 
 
@@ -180,7 +181,6 @@ else{
 
 
     }
-
 
 
 

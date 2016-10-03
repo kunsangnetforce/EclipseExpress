@@ -203,7 +203,7 @@
                                 android:paddingRight="50dp"
                                 android:background="@color/colorPrimary"
                                 android:layout_gravity="center_horizontal"
-                                android:id="@+id/button2" />
+                                android:id="@+id/button_logout" />
 
                         </LinearLayout>
                     </LinearLayout>

@@ -1,19 +1,25 @@
 package com.netforceinfotech.eclipseexpress.Account;
 
+import android.app.ActivityManager;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
+import android.widget.Toast;
 
 import com.mikepenz.actionitembadge.library.ActionItemBadge;
 import com.netforceinfotech.eclipseexpress.Account.Address.My_address_activity;
@@ -23,6 +29,7 @@ import com.netforceinfotech.eclipseexpress.Account.Reviews.My_review_adapter;
 import com.netforceinfotech.eclipseexpress.Account.Reviews.Review;
 import com.netforceinfotech.eclipseexpress.Editprofile.Edit_profile_activity;
 import com.netforceinfotech.eclipseexpress.R;
+import com.netforceinfotech.eclipseexpress.login.LoginActivity;
 import com.orangegangsters.github.swipyrefreshlayout.library.SwipyRefreshLayout;
 import com.orangegangsters.github.swipyrefreshlayout.library.SwipyRefreshLayoutDirection;
 
@@ -37,6 +44,8 @@ public class User_account extends AppCompatActivity implements View.OnClickListe
     private LinearLayout layoutcontainer,ll_myorders,ll_mywishlist,ll_myaddress,ll_myreviews;
     private Toolbar toolbar;
     RelativeLayout Edit_profile;
+    Button logout;
+    SharedPreferences sharedPreferences;
 
 
     @Override
@@ -50,6 +59,7 @@ public class User_account extends AppCompatActivity implements View.OnClickListe
 
     private void initilaizeview() {
 //        mSwipyRefreshLayout = (SwipyRefreshLayout)findViewById(R.id.swipyrefreshlayout);
+        logout=(Button)findViewById(R.id.button_logout);
         ScrollView_Commom = (ScrollView) findViewById(R.id.scroll_down);
         Edit_profile=(RelativeLayout) findViewById(R.id.relativeLayout2);
         layoutcontainer=(LinearLayout)findViewById(R.id.l_container);
@@ -62,6 +72,7 @@ public class User_account extends AppCompatActivity implements View.OnClickListe
         ll_mywishlist.setOnClickListener(this);
         ll_myreviews.setOnClickListener(this);
         Edit_profile.setOnClickListener(this);
+        logout.setOnClickListener(this);
 //        mSwipyRefreshLayout.setOnRefreshListener(new SwipyRefreshLayout.OnRefreshListener() {
 //            @Override
 //            public void onRefresh(SwipyRefreshLayoutDirection direction) {
@@ -118,9 +129,42 @@ public class User_account extends AppCompatActivity implements View.OnClickListe
                 Intent i4 =new Intent(User_account.this, Edit_profile_activity.class);
                 startActivity(i4);
                 break;
+            case R.id.button_logout:
+                Removeuserid();
+
+                break;
 
 
         }
+
+    }
+
+    private void Removeuserid() {
+        sharedPreferences = getSharedPreferences(LoginActivity.MyPREFERENCES, Context.MODE_PRIVATE);
+        if(sharedPreferences.getString("user_id",null)!=null) {
+            sharedPreferences.edit().remove("user_id").commit();
+            Show_Message("Sucessfully Logout");
+            finishAffinity();
+            Log.e("worked","worked");
+
+            Intent i=new Intent( User_account.this,LoginActivity.class);
+          //  i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(i);
+            finish();
+        }
+        else {
+            Intent i=new Intent( User_account.this,LoginActivity.class);
+
+            startActivity(i);
+            finish();
+        }
+
+
+    }
+
+    private void Show_Message(String s) {
+        Toast.makeText(getApplicationContext(),s,Toast.LENGTH_SHORT).show();
+
 
     }
 
