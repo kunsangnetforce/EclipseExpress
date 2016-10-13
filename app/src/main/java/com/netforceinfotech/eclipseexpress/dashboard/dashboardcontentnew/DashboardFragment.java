@@ -15,9 +15,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ScrollView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.netforceinfotech.eclipseexpress.R;
+import com.netforceinfotech.eclipseexpress.category.CategoryActivity;
 import com.netforceinfotech.eclipseexpress.discover.DiscoverActivity;
 import com.netforceinfotech.eclipseexpress.search.SearchActivity;
 
@@ -42,6 +44,7 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
     private StikkyHeaderBuilder stikkyHeader;
     private Intent intent;
     AppCompatButton discover_category;
+    TextView viewall_expressdeals,viewall_bestselling,viewall_expresscollection,viewall_trendingstyles,viewall_allsale;
 
     public DashboardFragment() {
         // Required empty public constructor
@@ -72,6 +75,16 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
 
     private void initializeview(View v) {
         discover_category=(AppCompatButton)v.findViewById(R.id.buttonDiscover);
+        viewall_expressdeals=(TextView)v.findViewById(R.id.textView65);
+        viewall_bestselling=(TextView)v.findViewById(R.id.textView66);
+        viewall_expresscollection=(TextView)v.findViewById(R.id.textView67);
+        viewall_trendingstyles=(TextView)v.findViewById(R.id.textView68);
+        viewall_allsale=(TextView)v.findViewById(R.id.textView69);
+        viewall_expressdeals.setOnClickListener(this);
+        viewall_bestselling.setOnClickListener(this);
+        viewall_expresscollection.setOnClickListener(this);
+        viewall_trendingstyles.setOnClickListener(this);
+        viewall_allsale.setOnClickListener(this);
 
     }
 
@@ -149,6 +162,31 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
             case R.id.relativeLayoutSearch:
                 intent=new Intent(context, SearchActivity.class);
                 startActivity(intent);
+                ((AppCompatActivity)context).overridePendingTransition(R.anim.enter, R.anim.exit);
+                break;
+            case R.id.textView65:
+                Intent intent = new Intent(context, CategoryActivity.class);
+                getActivity().startActivity(intent);
+                ((AppCompatActivity)context).overridePendingTransition(R.anim.enter, R.anim.exit);
+                break;
+            case R.id.textView66:
+                Intent intent2 = new Intent(context, CategoryActivity.class);
+                getActivity().startActivity(intent2);
+                ((AppCompatActivity)context).overridePendingTransition(R.anim.enter, R.anim.exit);
+                break;
+            case R.id.textView67:
+                Intent intent3 = new Intent(context, CategoryActivity.class);
+                getActivity().startActivity(intent3);
+                ((AppCompatActivity)context).overridePendingTransition(R.anim.enter, R.anim.exit);
+                break;
+            case R.id.textView68:
+                Intent intent4 = new Intent(context, CategoryActivity.class);
+                getActivity().startActivity(intent4);
+                ((AppCompatActivity)context).overridePendingTransition(R.anim.enter, R.anim.exit);
+                break;
+            case R.id.textView69:
+                Intent intent5 = new Intent(context, CategoryActivity.class);
+                getActivity().startActivity(intent5);
                 ((AppCompatActivity)context).overridePendingTransition(R.anim.enter, R.anim.exit);
                 break;
 

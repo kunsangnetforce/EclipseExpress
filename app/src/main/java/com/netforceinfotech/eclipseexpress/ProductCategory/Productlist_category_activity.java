@@ -14,16 +14,20 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
+import android.widget.TextView;
 
 import com.mikepenz.actionitembadge.library.ActionItemBadge;
 import com.netforceinfotech.eclipseexpress.ProductCategory.Flat_offers.Flat_offer_adapter;
 import com.netforceinfotech.eclipseexpress.ProductCategory.Show_subcategory.Product_category_grid_adapter;
 
+import com.netforceinfotech.eclipseexpress.ProductCategory.Show_subcategory.viewall_subcategory.Viewall_subcategory;
+import com.netforceinfotech.eclipseexpress.ProductCategory.Top_brands.viewall_topbrands.viewall_top_brands;
 import com.netforceinfotech.eclipseexpress.ProductCategory.Top_brands.Topbrands_adapter;
 import com.netforceinfotech.eclipseexpress.ProductCategory.Top_selling.Top_selling_adapter;
 import com.netforceinfotech.eclipseexpress.ProductCategory.sub_category_brands_offers.Brands_offers_adapter;
 import com.netforceinfotech.eclipseexpress.R;
 import com.netforceinfotech.eclipseexpress.category.CategoryActivity;
+import com.netforceinfotech.eclipseexpress.general.Tabletsize;
 
 import it.carlom.stikkyheader.core.StikkyHeaderBuilder;
 import it.carlom.stikkyheader.core.animator.AnimatorBuilder;
@@ -48,6 +52,7 @@ public class Productlist_category_activity extends AppCompatActivity implements 
 
     private LinearLayoutManager subcat_brands_offers__linearlayout_manager,
     flat_offers_linearlayout_manager,top_selling_linearlayout_manager,toprated_linearlayout_manager,topbrands_linearlayout_manager;
+    TextView viewall_subcategory,viewall_topbrands,viewall_offers,viewall_flatoffers,viewall_topselling,viewall_toprated;
 
     GridLayoutManager gridLayoutManager;
     String Sub_cat_names[]={"Top & Tees","Coat & Jackets","Shirts","Jeans","Pants","Shorts"};
@@ -62,9 +67,25 @@ public class Productlist_category_activity extends AppCompatActivity implements 
         toprated_linearlayout_manager= new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         flat_offers_linearlayout_manager= new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
 
+        viewall_subcategory=(TextView)findViewById(R.id.textView15);
+        viewall_topbrands=(TextView)findViewById(R.id.textView17);
+        viewall_offers=(TextView)findViewById(R.id.textView19);
+        viewall_flatoffers=(TextView)findViewById(R.id.textView21);
+        viewall_topselling=(TextView)findViewById(R.id.textView23);
+        viewall_toprated=(TextView)findViewById(R.id.textView30);
 
 
-        gridLayoutManager=new GridLayoutManager(this,3);
+if(Tabletsize.isTablet(this))
+{
+
+    gridLayoutManager=new GridLayoutManager(this,4);
+
+
+
+}
+        else {
+    gridLayoutManager = new GridLayoutManager(this, 3);
+}
         topbrands_adapter= new Topbrands_adapter(this);
         category_adapter = new Product_category_grid_adapter(this);
         top_selling_adapter=new Top_selling_adapter(this);
@@ -104,6 +125,21 @@ public class Productlist_category_activity extends AppCompatActivity implements 
         rl_top_brands.setOnClickListener(this);
         rl_show_categories.setOnClickListener(this);
         rl_flat_offers.setOnClickListener(this);
+        viewall_subcategory.setOnClickListener(this);
+        viewall_topbrands.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i5=new Intent(Productlist_category_activity.this, viewall_top_brands.class);
+                startActivity(i5);
+            }
+        });
+        viewall_flatoffers.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i5=new Intent(Productlist_category_activity.this, viewal.class);
+                startActivity(i5);
+            }
+        });
 
 
     }
@@ -150,12 +186,7 @@ public class Productlist_category_activity extends AppCompatActivity implements 
     private void setupsubcategory() {
         recycleview_subcat_list = (RecyclerView)findViewById(R.id.RecyclerView_subcategory);
         recycleview_subcat_list.setHasFixedSize(true);
-//        gridLayoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
-//            @Override
-//            public int getSpanSize(int position) {
-//                return (position % 2 == 0 ? 2 : 1);
-//            }
-//        });
+
         recycleview_subcat_list.setLayoutManager(gridLayoutManager);
         recycleview_subcat_list.setAdapter(category_adapter);
 
@@ -197,6 +228,12 @@ public class Productlist_category_activity extends AppCompatActivity implements 
                 Intent i4=new Intent(Productlist_category_activity.this, CategoryActivity.class);
                 startActivity(i4);
                 break;
+            case R.id.textView15:
+            Intent i5=new Intent(Productlist_category_activity.this, Viewall_subcategory.class);
+            startActivity(i5);
+            break;
+
+
 
 
 

@@ -5,8 +5,12 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
@@ -18,6 +22,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.CompoundButton;
 import android.widget.ExpandableListView;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -35,13 +40,18 @@ import com.netforceinfotech.eclipseexpress.Editprofile.Edit_profile_activity;
 import com.netforceinfotech.eclipseexpress.Helpcenter.Help_center;
 import com.netforceinfotech.eclipseexpress.ProductCategory.Productlist_category_activity;
 import com.netforceinfotech.eclipseexpress.R;
+import com.netforceinfotech.eclipseexpress.general.Connetivity_check;
+import com.netforceinfotech.eclipseexpress.login.LoginActivity;
 
+import java.io.File;
 import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -66,6 +76,8 @@ public class NavigationFragment extends Fragment implements View.OnClickListener
     private static final int IMAGE_PICKER_SELECT = 999;
     boolean mFromSavedInstance;
     View view;
+    String Fname,Lname,Dob;
+
     public static final String PREFS_NAME = "call_recorder";
     private SharedPreferences loginPreferences;
     List<String> categoryids;
@@ -126,7 +138,13 @@ public class NavigationFragment extends Fragment implements View.OnClickListener
 
 
         // preparing list data
-        prepareListData();
+        if(Connetivity_check.isNetworkAvailable(getActivity())==true)
+        { prepareListData();}
+        else
+        {
+            Showmessage("Their is no internet connection");
+        }
+
         listAdapter = new ExpandableListAdapter(context, listDataHeader, listDataChild);
         // setting list adapter
         expListView.setAdapter(listAdapter);
@@ -136,7 +154,7 @@ public class NavigationFragment extends Fragment implements View.OnClickListener
     @Override
     public void itemClicked(View view, int groupview, int childview) {
         try {
-            showMessage("groupbiew: " + groupview + "\nchildview: " + childview);
+            //showMessage("groupbiew: " + groupview + "\nchildview: " + childview);
             if((groupview==1)&(childview==0))
             {
                 Intent i=new Intent(getActivity(), User_account.class);
@@ -154,6 +172,10 @@ public class NavigationFragment extends Fragment implements View.OnClickListener
             {
                 Intent i=new Intent(getActivity(),change_password.class);
                 startActivity(i);
+            }
+            else if(groupview==2 &childview==0)
+            {
+              // callSubscribedwebservice();
             }
             else if(groupview==5)
             {
@@ -173,58 +195,56 @@ public class NavigationFragment extends Fragment implements View.OnClickListener
     }
 
 
+
+
     private void prepareListData() {
 
+        if (Connetivity_check.isNetworkAvailable(getActivity()) == true)
+
+        {
+            String url = "https://netforcesales.com/eclipseexpress/web_api.php?type=category";
+            _progressDialog.show();
+
+            setupSelfSSLCert();
+            Ion.with(this)
+                    .load(url)
+                    .progressDialog(_progressDialog)
+                    .asJsonObject()
+
+                    .setCallback(new FutureCallback<JsonObject>() {
+                        @Override
+                        public void onCompleted(Exception e, JsonObject result) {
+                            if (result != null)
+
+                            {
 
 
-
-        String url="https://netforcesales.com/eclipseexpress/web_api.php?type=category";
-
-
-
-        setupSelfSSLCert();
-        Ion.with(this)
-                .load(url)
-                .progressDialog(_progressDialog)
-                .asJsonObject()
-
-                .setCallback(new FutureCallback<JsonObject>() {
-                    @Override
-                    public void onCompleted(Exception e, JsonObject result) {
-                        if (result != null)
-
-                        {
+                                String status = result.get("status").toString();
+                                if (status.contains("success")) {
+                                    JsonObject categories = result.getAsJsonObject("result");
 
 
-                            String status = result.get("status").toString();
-                            if(status.contains("success")) {
-                                JsonObject categories=  result.getAsJsonObject("result");
+                                    JsonArray personen = categories.getAsJsonArray("categories");
+                                    for (int i = 0; i < personen.size(); i++) {
+                                        JsonObject user = personen.get(i).getAsJsonObject();
+                                        String category_name = user.get("name").getAsString();
+                                        String category_id = user.get("category_id").getAsString();
+                                        categoryids.add(category_id);
+                                        categoryname.add(category_name);
 
+                                    }
 
+                                    Log.e("categoryids", categoryids.toString());
+                                    Log.e("categoryname", categoryname.toString());
 
-
-                                JsonArray personen = categories.getAsJsonArray("categories");
-                                for (int i = 0; i < personen.size(); i++) {
-                                    JsonObject user = personen.get(i).getAsJsonObject();
-                                    String category_name=user.get("name").getAsString();
-                                    String category_id=user.get("category_id").getAsString();
-                                    categoryids.add(category_id);
-                                    categoryname.add(category_name);
 
                                 }
 
-                                Log.e("categoryids", categoryids.toString());
-                                Log.e("categoryname",categoryname.toString());
+                                _progressDialog.dismiss();
 
-
-
+                            } else {
+                                Log.e("error", e.toString());
                             }
-
-                            _progressDialog.dismiss();
-
-                        } else {
-                            Log.e("error", e.toString());
-                        }
 
 //                                        JsonObject js =result;
 //
@@ -234,51 +254,56 @@ public class NavigationFragment extends Fragment implements View.OnClickListener
 //                                        Log.e("status","st"+status+"cust"+customer_id+"mes"+message);
 
 
-                        // do stuff with the result or error
-                    }
-                });
-        listDataHeader = new ArrayList<String>();
-        listDataChild = new HashMap<String, List<String>>();
+                            // do stuff with the result or error
+                        }
+                    });
+            listDataHeader = new ArrayList<String>();
+            listDataChild = new HashMap<String, List<String>>();
 
-        // Adding child data
-        listDataHeader.add("Category");
-        listDataHeader.add("Account");
-        listDataHeader.add("Settings");
-        listDataHeader.add("Rate App");
-        listDataHeader.add("Share App");
-        listDataHeader.add("Help Centre");
+            // Adding child data
+            listDataHeader.add("Category");
+            listDataHeader.add("Account");
+            listDataHeader.add("Settings");
+            listDataHeader.add("Rate App");
+            listDataHeader.add("Share App");
+            listDataHeader.add("Help Centre");
 
-        // Adding child data
-        List<String> top250 = new ArrayList<String>();
-        top250.add("Woman's Clothings");
-        top250.add("Man's Clothings");
-        top250.add("Electronics");
-        top250.add("Home and Garden");
-        top250.add("Jwellery and Health");
-        top250.add("Automotive");
-        top250.add("Beauty and Health");
-        top250.add("Toys, Kids and Baby");
-        top250.add("Bags and Shoes");
-        top250.add("Sports and Outdoor");
-        top250.add("Phone and Accessories");
-        top250.add("Computer and Networking");
-        top250.add("VIEW ALL CATEGORIES");
+            // Adding child data
+            List<String> top250 = new ArrayList<String>();
+            top250.add("Woman's Clothings");
+            top250.add("Man's Clothings");
+            top250.add("Electronics");
+            top250.add("Home and Garden");
+            top250.add("Jwellery and Health");
+            top250.add("Automotive");
+            top250.add("Beauty and Health");
+            top250.add("Toys, Kids and Baby");
+            top250.add("Bags and Shoes");
+            top250.add("Sports and Outdoor");
+            top250.add("Phone and Accessories");
+            top250.add("Computer and Networking");
+            top250.add("VIEW ALL CATEGORIES");
 
-        List<String> Settings_data = new ArrayList<String>();
-        Settings_data.add("Subscription");
-        Settings_data.add("Change Password");
+            List<String> Settings_data = new ArrayList<String>();
+            Settings_data.add("Subscription");
+            Settings_data.add("Change Password");
 
-        List<String> account = new ArrayList<String>();
-        List<String> ratethisapp = new ArrayList<String>();
-        List<String> help_center = new ArrayList<String>();
-        List<String> share_app = new ArrayList<String>();
+            List<String> account = new ArrayList<String>();
+            List<String> ratethisapp = new ArrayList<String>();
+            List<String> help_center = new ArrayList<String>();
+            List<String> share_app = new ArrayList<String>();
 
-        listDataChild.put(listDataHeader.get(0), categoryname); // Header, Child data
-        listDataChild.put(listDataHeader.get(1), account); // Header, Child data
-        listDataChild.put(listDataHeader.get(2), Settings_data);
-        listDataChild.put(listDataHeader.get(3), ratethisapp); // Header, Child data
-        listDataChild.put(listDataHeader.get(4), help_center); // Header, Child data
-        listDataChild.put(listDataHeader.get(5), share_app);
+            listDataChild.put(listDataHeader.get(0), categoryname); // Header, Child data
+            listDataChild.put(listDataHeader.get(1), account); // Header, Child data
+            listDataChild.put(listDataHeader.get(2), Settings_data);
+            listDataChild.put(listDataHeader.get(3), ratethisapp); // Header, Child data
+            listDataChild.put(listDataHeader.get(4), help_center); // Header, Child data
+            listDataChild.put(listDataHeader.get(5), share_app);
+        }
+        else {
+            Showmessage("Their is no Internet Connection");
+        }
+
     }
 
     private void Showmessage(String message) {
@@ -371,15 +396,20 @@ public class NavigationFragment extends Fragment implements View.OnClickListener
         switch (v.getId()) {
             case R.id.img_edit_profile:
                 Intent i=new Intent(getActivity(), Edit_profile_activity.class);
+                if(Fname!=null) {
+                    i.putExtra("fname", Fname);
+                    i.putExtra("lname", Lname);
+                    i.putExtra("dob", Dob);
+
+                }
+                else{
+
+
+                }
+
                 startActivity(i);
                 break;
-            case R.id.imageViewDP:
-                ImagePicker.pickImage(getActivity(), "Select your image:");
-                //Intent k = new Intent(Intent.ACTION_PICK,android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                //startActivityForResult(k, IMAGE_PICKER_SELECT);
-//                Intent i=new Intent(getActivity(), Edit_profile_activity.class);
-//                startActivity(i);
-                break;
+
         }
     }
 
@@ -394,7 +424,10 @@ public class NavigationFragment extends Fragment implements View.OnClickListener
         transaction.commit();
     }
 
-    public void setdata(String username, String mobno, String email) {
+    public void setdata(String username, String mobno, String email,String Lastname,String dob) {
+        Fname=username;
+        Lname=Lastname;
+        Dob=dob;
 
         textViewName.setText(username);
         textViewmobile_no.setText(mobno);
@@ -454,22 +487,12 @@ public class NavigationFragment extends Fragment implements View.OnClickListener
 
 
 
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
 
-        super.onActivityResult(requestCode, resultCode, data);
 
-        Bitmap bitmap = ImagePicker.getImageFromResult(getActivity(), requestCode, resultCode, data);
-        if (bitmap != null) {
-            Log.e("bitmap",bitmap.toString());
 
-            circleImageViewProfilePic.setImageBitmap(bitmap);
-        }
-        else{
-            Log.e("bitmap not null","bitmap not null");
-        }
-        // TODO do something with the bitmap
-    }
+
+
+
 }
 
 

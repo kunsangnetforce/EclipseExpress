@@ -140,4 +140,8 @@ public class CheckoutActivity1 extends AppCompatActivity implements View.OnClick
                 break;
         }
     }
+
+
+
+
 }

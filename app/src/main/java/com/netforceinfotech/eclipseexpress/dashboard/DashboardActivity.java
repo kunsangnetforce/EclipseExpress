@@ -2,8 +2,12 @@ package com.netforceinfotech.eclipseexpress.dashboard;
 
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
@@ -16,7 +20,11 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.WindowManager;
+import android.widget.Toast;
 
+import com.google.gson.JsonObject;
+import com.koushikdutta.async.future.FutureCallback;
+import com.koushikdutta.ion.Ion;
 import com.mikepenz.actionitembadge.library.ActionItemBadge;
 import com.mvc.imagepicker.ImagePicker;
 import com.netforceinfotech.eclipseexpress.Add_to_cart.Add_to_card_activity;
@@ -26,6 +34,9 @@ import com.netforceinfotech.eclipseexpress.dashboard.navigation.NavigationFragme
 import com.netforceinfotech.eclipseexpress.login.Send_veri_mail;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 
 public class DashboardActivity extends AppCompatActivity {
@@ -33,7 +44,7 @@ public class DashboardActivity extends AppCompatActivity {
     private NavigationFragment drawer;
     private Toolbar toolbar;
     private DashboardFragment homeFragment;
-   public static String username,mobno,email;
+   public static String username,mobno,email,Lastname,dob;
 
 
     Context context;
@@ -58,7 +69,11 @@ public class DashboardActivity extends AppCompatActivity {
             username =(String) b.get("username");
              mobno =(String) b.get("mobno");
              email =(String) b.get("email");
-            drawer.setdata(username,mobno,email);
+            Lastname=(String) b.get("lname");
+            dob=(String) b.get("dob");
+
+            drawer.setdata(username,mobno,email,Lastname,dob);
+
 
 
         }
@@ -126,39 +141,7 @@ public class DashboardActivity extends AppCompatActivity {
 
         finish();
     }
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-
-        super.onActivityResult(requestCode, resultCode, data);
-        Bitmap bitmap = ImagePicker.getImageFromResult(this, requestCode, resultCode, data);
-        if (bitmap != null) {
-            Log.e("bitmap",bitmap.toString());
-
-            NavigationFragment.circleImageViewProfilePic.setImageBitmap(bitmap);
 
 
-            String imageEncoded2=bitmapToBase64(bitmap);
-            Log.e("imageEncoded2",imageEncoded2.toString());
-
-
-        }
-        else{
-            Log.e("bitmap not null","bitmap not null");
-        }
-        Log.e("data", requestCode + "" + resultCode + data);
-
-
-
-    }
-
-
-
-
-    private String bitmapToBase64(Bitmap bitmap) {
-        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 10, byteArrayOutputStream);
-        byte[] byteArray = byteArrayOutputStream .toByteArray();
-        return Base64.encodeToString(byteArray, Base64.DEFAULT);
-    }
 
 }

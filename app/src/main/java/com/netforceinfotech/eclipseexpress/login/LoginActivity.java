@@ -36,6 +36,7 @@ import com.google.gson.JsonObject;
 import com.koushikdutta.async.future.FutureCallback;
 import com.koushikdutta.ion.Ion;
 import com.netforceinfotech.eclipseexpress.R;
+import com.netforceinfotech.eclipseexpress.general.Connetivity_check;
 import com.netforceinfotech.eclipseexpress.general.Validation;
 import com.netforceinfotech.eclipseexpress.dashboard.DashboardActivity;
 import com.twitter.sdk.android.Twitter;
@@ -337,140 +338,138 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 String email_data = email_edittext.getText().toString().trim();
 
                 String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
-
-
-                if (Validation.isEmailAddress(email_edittext,false))
+                if(Connetivity_check.isNetworkAvailable(this)==true)
 
                 {
-                    if(email_data.length()!=0|| password_edittext.getText().length()!=0) {
+                    if (Validation.isEmailAddress(email_edittext, false))
 
-                        _progressDialog.show();
+                    {
+                        if (email_data.length() != 0 || password_edittext.getText().length() != 0) {
 
-                        String url="https://netforcesales.com/eclipseexpress/web_api.php?type=login&email="+email_edittext.getText().toString()+"&password="+password_edittext.getText().toString();
+                            _progressDialog.show();
 
-
-                        Log.e("url", url);
-                        setupSelfSSLCert();
-                        Ion.with(this)
-                                .load(url)
-                                .progressDialog(_progressDialog)
-                                .asJsonObject()
-
-                                .setCallback(new FutureCallback<JsonObject>() {
-                                    @Override
-                                    public void onCompleted(Exception e, JsonObject result) {
-                                        if (result != null)
-
-                                        {
+                            String url = "https://netforcesales.com/eclipseexpress/web_api.php?type=login&email=" + email_edittext.getText().toString() + "&password=" + password_edittext.getText().toString();
 
 
-                                            String status = result.get("status").toString();
-                                            if(status.contains("sussess"))
+                            Log.e("url", url);
+                            setupSelfSSLCert();
+                            Ion.with(this)
+                                    .load(url)
+                                    .progressDialog(_progressDialog)
+                                    .asJsonObject()
+
+                                    .setCallback(new FutureCallback<JsonObject>() {
+                                        @Override
+                                        public void onCompleted(Exception e, JsonObject result) {
+                                            if (result != null)
+
                                             {
 
-                                                JsonObject userData = (JsonObject) result.get("userData");
-                                                JsonElement message2 = userData.get("customer_id");
-                                                final String message = message2.getAsString();
+
+                                                String status = result.get("status").toString();
+                                                if (status.contains("sussess")) {
+
+                                                    JsonObject userData = (JsonObject) result.get("userData");
+                                                    JsonElement message2 = userData.get("customer_id");
+                                                    final String message = message2.getAsString();
 
 
-                                                final String username=userData.get("firstname").toString();
-                                                final String  creditphone=userData.get("creditphone").toString();
-                                                final String email=userData.get("email").toString();
+                                                    final String username = userData.get("firstname").getAsString();
+                                                    final String lastname = userData.get("lastname").getAsString();
+                                                    final String dob = userData.get("dob").toString();
+
+                                                    final String creditphone = userData.get("creditphone").toString();
+                                                    final String email = userData.get("email").getAsString();
 //call confirmation mail webservice
-Log.e("userid",message);
+                                                    Log.e("userid", message);
 //                               boolean confirmation=verifyemail(message);
 //                                                if(confirmation==true) {
-                                                String confirmmail_url="https://netforcesales.com/eclipseexpress/web_api.php?type=customer_check&id="+message;
-                                                Log.e("confirmmail_url", confirmmail_url);
-                                                setupSelfSSLCert();
-                                                Ion.with(context)
-                                                        .load(confirmmail_url)
-                                                        .asJsonObject()
-                                                        .setCallback(new FutureCallback<JsonObject>() {
-                                                            @Override
-                                                            public void onCompleted(Exception e, JsonObject result) {
+                                                    String confirmmail_url = "https://netforcesales.com/eclipseexpress/web_api.php?type=customer_check&id=" + message;
+                                                    Log.e("confirmmail_url", confirmmail_url);
+                                                    setupSelfSSLCert();
+                                                    Ion.with(context)
+                                                            .load(confirmmail_url)
+                                                            .asJsonObject()
+                                                            .setCallback(new FutureCallback<JsonObject>() {
+                                                                @Override
+                                                                public void onCompleted(Exception e, JsonObject result) {
 
 
-                                                                String status = result.get("status").toString();
-                                                                if(status.contains("success")) {
-                                                                    JsonObject conformation_result = (JsonObject) result.get("result");
-                                                                    String  Confirmation_jsonelement = conformation_result.get("confirmation").toString();
-                                                                    String Confirmation=Confirmation_jsonelement;
-                                                                    Log.e("Confirmation",Confirmation);
-                                                                    if(Confirmation==null)
-                                                                    {
-                                                                        ShowMessage("initialy confirm mail and try again");
+                                                                    String status = result.get("status").toString();
+                                                                    if (status.contains("success")) {
+                                                                        JsonObject conformation_result = (JsonObject) result.get("result");
+                                                                        String Confirmation_jsonelement = conformation_result.get("confirmation").toString();
+                                                                        String Confirmation = Confirmation_jsonelement;
+                                                                        Log.e("Confirmation", Confirmation);
+                                                                        if (Confirmation == null) {
+                                                                            ShowMessage("initialy confirm mail and try again");
+                                                                        } else {
+                                                                            Log.e("confirmation", "true");
+                                                                            //add userid in sharedpreference
+
+                                                                            SharedPreferences.Editor editor = sharedpreferences.edit();
+                                                                            editor.putString("user_id", message);
+                                                                            editor.putString("login_type", "0");
+                                                                            editor.putString("email", email);
+                                                                            editor.commit();
+                                                                            Log.e("customer_id", message);
+                                                                            ShowMessage("Sucessfully login");
+                                                                            intent = new Intent(context, DashboardActivity.class);
+                                                                            intent.putExtra("username", username);
+                                                                            intent.putExtra("mobno", creditphone);
+                                                                            intent.putExtra("email", email);
+                                                                            intent.putExtra("lname", lastname);
+                                                                            intent.putExtra("dob", dob);
+
+                                                                            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                                                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                                                            startActivity(intent);
+
+                                                                            overridePendingTransition(R.anim.enter, R.anim.exit);
+                                                                            finish();
+
+                                                                        }
+
+
                                                                     }
-                                                                    else {
-                                                                        Log.e("confirmation", "true");
-                                                                        //add userid in sharedpreference
-
-                                                                        SharedPreferences.Editor editor = sharedpreferences.edit();
-                                                                        editor.putString("user_id", message);
-                                                                        editor.putString("login_type", "0");
-                                                                        editor.putString("email", email);
-                                                                        editor.commit();
-                                                                        Log.e("customer_id", message);
-                                                                        ShowMessage("Sucessfully login");
-                                                                        intent = new Intent(context, DashboardActivity.class);
-                                                                        intent.putExtra("username", username);
-                                                                        intent.putExtra("mobno", creditphone);
-                                                                        intent.putExtra("email", email);
-
-                                                                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                                                                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                                                                        startActivity(intent);
-
-                                                                        overridePendingTransition(R.anim.enter, R.anim.exit);
-                                                                        finish();
-
-                                                                    }
-
-
-
                                                                 }
-                                                            }
-                                                        });
+                                                            });
 
 //                                                }
 //                                                else{
 //
 //                                                    ShowMessage("initialy confirm mail and try again");
 //                                                }
+                                                } else {
+                                                    String message = result.get("message").toString();
+                                                    ShowMessage(message);
+                                                }
+
+
+                                                //String message = result.get("message").toString();
+
+                                                Log.e("status", "st" + status);
+
+                                                _progressDialog.dismiss();
+
+
+                                            } else {
+                                                Log.e("error", e.toString());
                                             }
-                                            else{
-                                                String message = result.get("message").toString();
-                                                ShowMessage(message);
-                                            }
-
-
-                                            //String message = result.get("message").toString();
-
-                                            Log.e("status", "st" + status);
-
-                                            _progressDialog.dismiss();
-
-
-                                        } else {
-                                            Log.e("error", e.toString());
-                                        }
 
 //
-                                    }
-                                });
+                                        }
+                                    });
 
 
-
-                    }
-                    else{
-                        ShowMessage("can't leave blank");
+                        } else {
+                            ShowMessage("can't leave blank");
+                        }
+                    } else {
+                        Toast.makeText(getApplicationContext(), "Invalid email address", Toast.LENGTH_SHORT).show();
                     }
                 }
-                else
-                {
-                    Toast.makeText(getApplicationContext(),"Invalid email address", Toast.LENGTH_SHORT).show();
-                }
-
+                else{ShowMessage("Their is no internet connection");}
 
                 break;
 
@@ -581,25 +580,32 @@ Log.e("userid",message);
 };
 
     private void login(String fbToken, String fbName, final String fbId, String reg_id, String email) {
-        //https://netforcesales.com/ibet_admin/api/services.php?opt=register&email=kunwangyal15@yahoo.com&fb_token=qwerty1&name=Kunsang%20Wangyal&facebook=1&fb_id=1sdfasdf232324&device_id=asdf23232322&reg_id=asdfasdf232324
-        String url = getResources().getString(R.string.url);
-        String device_id = getDeviceId();
-        fbName = fbName.replace(" ", "%20");
-        url = url + "/services.php?opt=register&email=" + email +  "&name=" + fbName + "&fb_id=" + fbId +  "&reg_id=" +reg_id;
-        Log.i("result url", url);
-       // setHeader();
-        //linearLayoutProgress.setVisibility(View.VISIBLE);
-        Ion.with(context)
-                .load(url)
-                .asJsonObject()
-                .setCallback(new FutureCallback<JsonObject>() {
-                    @Override
-                    public void onCompleted(Exception e, JsonObject result) {
-                        //linearLayoutProgress.setVisibility(View.GONE);
+        if(Connetivity_check.isNetworkAvailable(this)==true)
+
+        {
+            //https://netforcesales.com/ibet_admin/api/services.php?opt=register&email=kunwangyal15@yahoo.com&fb_token=qwerty1&name=Kunsang%20Wangyal&facebook=1&fb_id=1sdfasdf232324&device_id=asdf23232322&reg_id=asdfasdf232324
+            String url = getResources().getString(R.string.url);
+            String device_id = getDeviceId();
+            fbName = fbName.replace(" ", "%20");
+            url = url + "/services.php?opt=register&email=" + email + "&name=" + fbName + "&fb_id=" + fbId + "&reg_id=" + reg_id;
+            Log.i("result url", url);
+            // setHeader();
+            //linearLayoutProgress.setVisibility(View.VISIBLE);
+            Ion.with(context)
+                    .load(url)
+                    .asJsonObject()
+                    .setCallback(new FutureCallback<JsonObject>() {
+                        @Override
+                        public void onCompleted(Exception e, JsonObject result) {
+                            //linearLayoutProgress.setVisibility(View.GONE);
 
 
-                    }
-                });
+                        }
+                    });
+        }
+        else{
+            ShowMessage("Their is No Internet Connection");
+        }
     }
 
 

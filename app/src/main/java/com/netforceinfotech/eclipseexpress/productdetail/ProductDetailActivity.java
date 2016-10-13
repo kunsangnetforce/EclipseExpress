@@ -16,6 +16,7 @@ import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.EditText;
@@ -29,6 +30,7 @@ import android.widget.Toast;
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.mikepenz.actionitembadge.library.ActionItemBadge;
+import com.netforceinfotech.eclipseexpress.Add_to_cart.Add_to_card_activity;
 import com.netforceinfotech.eclipseexpress.R;
 import com.netforceinfotech.eclipseexpress.checkout.CheckoutActivity1;
 import com.shehabic.droppy.DroppyClickCallbackInterface;
@@ -298,4 +300,31 @@ public class ProductDetailActivity extends AppCompatActivity implements View.OnC
                 break;
         }
     }
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle item selection
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                overridePendingTransition(R.anim.left_to_right, R.anim.right_to_left);
+                return true;
+
+            case R.id.add_to_cart:
+                //finish();
+                Intent i =new Intent(ProductDetailActivity.this, Add_to_card_activity.class);
+                startActivity(i);
+                overridePendingTransition(R.anim.left_to_right, R.anim.right_to_left);
+                return true;
+
+
+
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+
+
 }

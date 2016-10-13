@@ -1,5 +1,6 @@
 package com.netforceinfotech.eclipseexpress.discover;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
@@ -8,6 +9,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.WindowManager;
 
+import com.netforceinfotech.eclipseexpress.Add_to_cart.Add_to_card_activity;
 import com.netforceinfotech.eclipseexpress.R;
 
 public class DiscoverActivity extends AppCompatActivity {
@@ -95,7 +97,12 @@ public class DiscoverActivity extends AppCompatActivity {
                 finish();
                 overridePendingTransition(R.anim.left_to_right, R.anim.right_to_left);
                 return true;
-
+            case R.id.add_to_cart:
+                //finish();
+                Intent i =new Intent(DiscoverActivity.this, Add_to_card_activity.class);
+                startActivity(i);
+                overridePendingTransition(R.anim.left_to_right, R.anim.right_to_left);
+                return true;
 
             default:
                 return super.onOptionsItemSelected(item);

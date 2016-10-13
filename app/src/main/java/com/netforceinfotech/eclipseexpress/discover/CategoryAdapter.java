@@ -2,6 +2,7 @@ package com.netforceinfotech.eclipseexpress.discover;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.netforceinfotech.eclipseexpress.R;
+import com.netforceinfotech.eclipseexpress.productdetail.ProductDetailActivity;
 
 import java.util.List;
 
@@ -39,6 +41,17 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryHolder> {
 
     @Override
     public void onBindViewHolder(CategoryHolder holder, final int position) {
+        holder.cardview.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent intent = new Intent(context, ProductDetailActivity.class);
+                context.startActivity(intent);
+
+
+
+            }
+        });
 
     }
 

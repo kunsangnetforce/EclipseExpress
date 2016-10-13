@@ -35,6 +35,8 @@
     <string name="size_available">Size available for this item</string>
     <string name="postal">Postal code</string>
     <string name="url">https://netforcesales.com/eclipseexpress/</string>
+    <string name="title_activity_viewall_subcategory">Viewall_subcategory</string>
+    <string name="title_activity_view_all_flat_offers">View_all_flat_offers</string>
 
 
 </resources>

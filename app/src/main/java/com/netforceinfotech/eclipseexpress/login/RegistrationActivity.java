@@ -17,6 +17,7 @@ import com.google.gson.JsonObject;
 import com.koushikdutta.async.future.FutureCallback;
 import com.koushikdutta.ion.Ion;
 import com.netforceinfotech.eclipseexpress.R;
+import com.netforceinfotech.eclipseexpress.general.Connetivity_check;
 
 import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
@@ -96,47 +97,50 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
     }
 
     private void Applyvalidation() {
-        if(Fname.getText().length()!=0||password.getText().length()!=0||confirm_password.getText().length()!=0||EmailId.getText().length()!=0||Mobile_no.getText().length()!=0||Lname.getText().length()!=0) {
-String email=EmailId.getText().toString();
-            if (isValidEmail(email)) {
-                if(password.getText().toString().equals(confirm_password.getText().toString())) {
-                    if (Mobile_no.getText().length() < 10) {
+        if(Connetivity_check.isNetworkAvailable(this)==true)
 
-                        Showmessage("Enter 10 digit mobile no");
-                    } else {
+        {
+            if (Fname.getText().length() != 0 || password.getText().length() != 0 || confirm_password.getText().length() != 0 || EmailId.getText().length() != 0 || Mobile_no.getText().length() != 0 || Lname.getText().length() != 0) {
+                String email = EmailId.getText().toString();
+                if (isValidEmail(email)) {
+                    if (password.getText().toString().equals(confirm_password.getText().toString())) {
+                        if (Mobile_no.getText().length() < 10) {
 
-                        _progressDialog.show();
+                            Showmessage("Enter 10 digit mobile no");
+                        } else {
 
-String url="https://netforcesales.com/eclipseexpress/web_api.php?type=registration&email="+EmailId.getText().toString()+"&firstname="+Fname.getText().toString()+"" +"&lastname="+Lname.getText().toString()+""+
-        "&password="+password.getText().toString()+"&mobile_no="+Mobile_no.getText().toString()+"&website_id=1&store_id=1&group_id=1";
+                            _progressDialog.show();
 
-
-                        Log.e("url", url);
-                        setupSelfSSLCert();
-                        Ion.with(this)
-                                .load(url)
-                                .progressDialog(_progressDialog)
-                                .asJsonObject()
-
-                                .setCallback(new FutureCallback<JsonObject>() {
-                                    @Override
-                                    public void onCompleted(Exception e, JsonObject result) {
-                                        if (result != null)
-
-                                        {
+                            String url = "https://netforcesales.com/eclipseexpress/web_api.php?type=registration&email=" + EmailId.getText().toString() + "&firstname=" + Fname.getText().toString() + "" + "&lastname=" + Lname.getText().toString() + "" +
+                                    "&password=" + password.getText().toString() + "&mobile_no=" + Mobile_no.getText().toString() + "&website_id=1&store_id=1&group_id=1";
 
 
-                                                    String status = result.get("status").toString();
-                                           // String customer_id = result.get("customer_id").toString();
-                                            String message = result.get("message").toString();
+                            Log.e("url", url);
+                            setupSelfSSLCert();
+                            Ion.with(this)
+                                    .load(url)
+                                    .progressDialog(_progressDialog)
+                                    .asJsonObject()
 
-                                            Log.e("status", "st" + status  + "mes" + message);
-                                            Showmessage(message);
-                                            _progressDialog.dismiss();
+                                    .setCallback(new FutureCallback<JsonObject>() {
+                                        @Override
+                                        public void onCompleted(Exception e, JsonObject result) {
+                                            if (result != null)
 
-                                        } else {
-                                            Log.e("error", e.toString());
-                                        }
+                                            {
+
+
+                                                String status = result.get("status").toString();
+                                                // String customer_id = result.get("customer_id").toString();
+                                                String message = result.get("message").toString();
+
+                                                Log.e("status", "st" + status + "mes" + message);
+                                                Showmessage(message);
+                                                _progressDialog.dismiss();
+
+                                            } else {
+                                                Log.e("error", e.toString());
+                                            }
 
 //                                        JsonObject js =result;
 //
@@ -146,31 +150,27 @@ String url="https://netforcesales.com/eclipseexpress/web_api.php?type=registrati
 //                                        Log.e("status","st"+status+"cust"+customer_id+"mes"+message);
 
 
-                                        // do stuff with the result or error
-                                    }
-                                });
+                                            // do stuff with the result or error
+                                        }
+                                    });
+                        }
+                    } else {
+
+
+                        Showmessage("password don't match");
                     }
-                }
-else{
 
 
-
-                    Showmessage("password don't match");
+                } else {
+                    Showmessage("Invalid Email");
                 }
 
-
-
-
-
-
+            } else {
+                Showmessage("Can't Leave blank");
             }
-            else{
-                Showmessage("Invalid Email");
-            }
-
         }
         else{
-            Showmessage("Can't Leave blank");
+            Showmessage("Their is no Internet connectivity");
         }
     }
 

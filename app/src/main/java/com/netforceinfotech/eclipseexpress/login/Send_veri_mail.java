@@ -19,6 +19,7 @@ import com.koushikdutta.async.future.FutureCallback;
 import com.koushikdutta.ion.Ion;
 import com.netforceinfotech.eclipseexpress.R;
 import com.netforceinfotech.eclipseexpress.dashboard.DashboardActivity;
+import com.netforceinfotech.eclipseexpress.general.Connetivity_check;
 
 import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
@@ -108,48 +109,53 @@ public class Send_veri_mail extends Fragment implements View.OnClickListener {
     }
 
     private void resetwebservice(String s) {
+        if (Connetivity_check.isNetworkAvailable(getActivity()) == true)
 
-        if (isValidEmail(s)) {
-            String url = "https://netforcesales.com/eclipseexpress/web_api.php?type=forget_password&email=" + s;
-            setupSelfSSLCert();
-            Ion.with(this)
-                    .load(url)
-                    .progressDialog(_progressDialog)
-                    .asJsonObject()
+            if (isValidEmail(s)) {
+                String url = "https://netforcesales.com/eclipseexpress/web_api.php?type=forget_password&email=" + s;
+                setupSelfSSLCert();
+                Ion.with(this)
+                        .load(url)
+                        .progressDialog(_progressDialog)
+                        .asJsonObject()
 
-                    .setCallback(new FutureCallback<JsonObject>() {
-                        @Override
-                        public void onCompleted(Exception e, JsonObject result) {
-                            if (result != null)
+                        .setCallback(new FutureCallback<JsonObject>() {
+                            @Override
+                            public void onCompleted(Exception e, JsonObject result) {
+                                if (result != null)
 
-                            {
-                                _progressDialog.show();
-
-
-                                String status = result.get("status").getAsString();
-                                if (status.contains("success")) {
-
-                                    Intent intent = new Intent(getActivity(), LoginActivity.class);
+                                {
+                                    _progressDialog.show();
 
 
-                                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                                    startActivity(intent);
+                                    String status = result.get("status").getAsString();
+                                    if (status.contains("success")) {
 
-                                    String message = result.get("message").getAsString();
-                                    Showmessage(message);
-                                    _progressDialog.dismiss();
+                                        Intent intent = new Intent(getActivity(), LoginActivity.class);
+
+
+                                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                        startActivity(intent);
+
+                                        String message = result.get("message").getAsString();
+                                        Showmessage(message);
+                                        _progressDialog.dismiss();
+                                    }
+
                                 }
-
                             }
-                        }
 
 
-                    });
-        }
+                        });
+            } else {
+                Showmessage("Email Address Not Valid");
+            }
         else{
-            Showmessage("Email Address Not Valid");
+            Showmessage("Their is No Internet Connection");
         }
+
+
 
     }
     private boolean isValidEmail(String email) {

@@ -3,14 +3,14 @@
     package="com.netforceinfotech.eclipseexpress">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:allowBackup="true"
         android:icon="@drawable/logo"
         android:label="@string/app_name"
         android:supportsRtl="true"
-
         android:theme="@style/AppTheme">
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
@@ -63,7 +63,16 @@
         <activity android:name=".Add_to_cart.Add_to_card_activity" />
         <activity android:name=".ChangePassword.change_password" />
         <activity android:name=".login.Forgot_password" />
-        <activity android:name=".Helpcenter.Help_center"></activity>
+        <activity android:name=".Helpcenter.Help_center" />
+        <activity
+            android:name=".ProductCategory.Show_subcategory.viewall_subcategory.Viewall_subcategory"
+            android:label="@string/title_activity_viewall_subcategory"
+            android:theme="@style/AppTheme" />
+        <activity android:name=".ProductCategory.Top_brands.viewall_topbrands.viewall_top_brands" />
+        <activity
+            android:name=".ProductCategory.Flat_offers.viewall_flatoffers.View_all_flat_offers"
+            android:label="@string/title_activity_view_all_flat_offers"
+            android:theme="@style/AppTheme"></activity>
     </application>
 
 </manifest>

@@ -71,4 +71,5 @@ dependencies {
     compile 'com.github.techery:properratingbar:0.0.5'
     compile 'com.github.Mariovc:ImagePicker:1.0.3'
     compile 'com.koushikdutta.ion:ion:2.+'
+    compile 'com.wdullaer:materialdatetimepicker:2.5.0'
 }
