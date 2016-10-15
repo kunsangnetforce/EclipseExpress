@@ -72,7 +72,12 @@
         <activity
             android:name=".ProductCategory.Flat_offers.viewall_flatoffers.View_all_flat_offers"
             android:label="@string/title_activity_view_all_flat_offers"
-            android:theme="@style/AppTheme"></activity>
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".Account.My_orders.Myorders_details.Myorder_details"
+            android:label="@string/title_activity_myorder_details"
+            android:theme="@style/AppTheme" />
+        <activity android:name=".ProductCategory.Top_selling.top_selling_viewall.Topselling_viewall"></activity>
     </application>
 
 </manifest>

@@ -128,6 +128,7 @@ android:textColor="#00B200"
 
                 <RelativeLayout
                     android:layout_marginTop="5dp"
+                    android:id="@+id/rl_order_container"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 

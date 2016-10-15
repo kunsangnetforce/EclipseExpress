@@ -28,11 +28,11 @@ public class View_all_flat_offers extends AppCompatActivity {
 
         if (Tabletsize.isTablet(this)) {
             gridLayoutManager=new GridLayoutManager(this,3);
-            itemDecoration = new SpacesItemDecoration(5,3);
+            itemDecoration = new SpacesItemDecoration(2,3);
             // do something
         } else {
             gridLayoutManager = new GridLayoutManager(this, 2);
-            itemDecoration = new SpacesItemDecoration(5,2);
+            itemDecoration = new SpacesItemDecoration(2,2);
             // do something else
         }
 

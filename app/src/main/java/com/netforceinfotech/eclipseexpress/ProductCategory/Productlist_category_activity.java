@@ -18,12 +18,14 @@ import android.widget.TextView;
 
 import com.mikepenz.actionitembadge.library.ActionItemBadge;
 import com.netforceinfotech.eclipseexpress.ProductCategory.Flat_offers.Flat_offer_adapter;
+import com.netforceinfotech.eclipseexpress.ProductCategory.Flat_offers.viewall_flatoffers.View_all_flat_offers;
 import com.netforceinfotech.eclipseexpress.ProductCategory.Show_subcategory.Product_category_grid_adapter;
 
 import com.netforceinfotech.eclipseexpress.ProductCategory.Show_subcategory.viewall_subcategory.Viewall_subcategory;
 import com.netforceinfotech.eclipseexpress.ProductCategory.Top_brands.viewall_topbrands.viewall_top_brands;
 import com.netforceinfotech.eclipseexpress.ProductCategory.Top_brands.Topbrands_adapter;
 import com.netforceinfotech.eclipseexpress.ProductCategory.Top_selling.Top_selling_adapter;
+import com.netforceinfotech.eclipseexpress.ProductCategory.Top_selling.top_selling_viewall.Topselling_viewall;
 import com.netforceinfotech.eclipseexpress.ProductCategory.sub_category_brands_offers.Brands_offers_adapter;
 import com.netforceinfotech.eclipseexpress.R;
 import com.netforceinfotech.eclipseexpress.category.CategoryActivity;
@@ -136,7 +138,21 @@ if(Tabletsize.isTablet(this))
         viewall_flatoffers.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i5=new Intent(Productlist_category_activity.this, viewal.class);
+                Intent i5=new Intent(Productlist_category_activity.this, View_all_flat_offers.class);
+                startActivity(i5);
+            }
+        });
+        viewall_topselling.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i5=new Intent(Productlist_category_activity.this, Topselling_viewall.class);
+                startActivity(i5);
+            }
+        });
+        viewall_toprated.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i5=new Intent(Productlist_category_activity.this, Topselling_viewall.class);
                 startActivity(i5);
             }
         });

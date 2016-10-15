@@ -6,8 +6,7 @@ android:layout_width="match_parent"
 android:layout_height="match_parent"
 android:fitsSystemWindows="true"
 android:background="#D1CECE"
-
-tools:context=".ProductCategory.Flat_offers.viewall_flatoffers.View_all_flat_offers">
+tools:context="com.netforceinfotech.eclipseexpress.ProductCategory.Top_selling.top_selling_viewall.Topselling_viewall">
 
 
 <android.support.design.widget.AppBarLayout
@@ -26,20 +25,10 @@ tools:context=".ProductCategory.Flat_offers.viewall_flatoffers.View_all_flat_off
 <android.support.v7.widget.RecyclerView
     android:layout_width="match_parent"
     android:layout_marginTop="50dp"
-
-    android:id="@+id/recycler_viewall_subcat_flatoffers"
+    android:background="#D1CECE"
+    android:id="@+id/recycler_viewall_subcat_topselling"
     android:layout_height="match_parent"></android.support.v7.widget.RecyclerView>
 
 
 
 </android.support.design.widget.CoordinatorLayout>
-
-
-
-
-
-
-
-
-
-

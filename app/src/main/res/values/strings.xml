@@ -37,6 +37,7 @@
     <string name="url">https://netforcesales.com/eclipseexpress/</string>
     <string name="title_activity_viewall_subcategory">Viewall_subcategory</string>
     <string name="title_activity_view_all_flat_offers">View_all_flat_offers</string>
+    <string name="title_activity_myorder_details">Myorder_details</string>
 
 
 </resources>

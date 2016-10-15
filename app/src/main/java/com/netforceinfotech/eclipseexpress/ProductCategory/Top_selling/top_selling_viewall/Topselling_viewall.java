@@ -1,52 +1,39 @@
-package com.netforceinfotech.eclipseexpress.ProductCategory.Show_subcategory.viewall_subcategory;
+package com.netforceinfotech.eclipseexpress.ProductCategory.Top_selling.top_selling_viewall;
 
-import android.content.Context;
-import android.content.res.Configuration;
-import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.MenuItem;
-import android.view.View;
 
+import com.netforceinfotech.eclipseexpress.ProductCategory.Top_brands.viewall_topbrands.viewall_topbrands_adapter;
 import com.netforceinfotech.eclipseexpress.R;
 import com.netforceinfotech.eclipseexpress.general.SpacesItemDecoration;
 import com.netforceinfotech.eclipseexpress.general.Tabletsize;
 
-public class Viewall_subcategory extends AppCompatActivity {
-    RecyclerView recyclerview_viewall_subcategory;
-
+public class Topselling_viewall extends AppCompatActivity {
     GridLayoutManager gridLayoutManager;
-
-    LinearLayoutManager subcat_all__linearlayout_manager;
-    Viewall_subcat_recycle_adpater subcat_recycle_adpater;
+    Topselling_viewall_adapter subcat_recycle_adpater;
     SpacesItemDecoration itemDecoration;
-
-
+    RecyclerView recyclerview_viewall_subcategory;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.viewall_subcategory_activity);
-        subcat_all__linearlayout_manager= new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
-
+        setContentView(R.layout.activity_topselling_viewall);
         if (Tabletsize.isTablet(this)) {
             gridLayoutManager=new GridLayoutManager(this,3);
-     itemDecoration = new SpacesItemDecoration(5,3);
+            itemDecoration = new SpacesItemDecoration(1,3);
             // do something
         } else {
             gridLayoutManager = new GridLayoutManager(this, 2);
-           itemDecoration = new SpacesItemDecoration(5,2);
+            itemDecoration = new SpacesItemDecoration(1,2);
             // do something else
         }
 
 
-        subcat_recycle_adpater=new Viewall_subcat_recycle_adpater(this);
+        subcat_recycle_adpater=new Topselling_viewall_adapter(this);
         setuptoolbar();
         setuprecycleview();
 
@@ -58,10 +45,10 @@ public class Viewall_subcategory extends AppCompatActivity {
     private void setuprecycleview() {
 
 
-        recyclerview_viewall_subcategory= (RecyclerView)findViewById(R.id.recycler_viewall_subcat);
-        recyclerview_viewall_subcategory.setLayoutManager(subcat_all__linearlayout_manager);
+        recyclerview_viewall_subcategory= (RecyclerView)findViewById(R.id.recycler_viewall_subcat_topselling);
+        recyclerview_viewall_subcategory.setLayoutManager(gridLayoutManager);
 
-       // recyclerview_viewall_subcategory.addItemDecoration(itemDecoration);
+        recyclerview_viewall_subcategory.addItemDecoration(itemDecoration);
         recyclerview_viewall_subcategory.setAdapter(subcat_recycle_adpater);
 
 
