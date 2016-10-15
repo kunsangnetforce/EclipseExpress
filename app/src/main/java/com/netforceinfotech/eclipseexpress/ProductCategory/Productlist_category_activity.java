@@ -27,6 +27,7 @@ import com.netforceinfotech.eclipseexpress.ProductCategory.Top_brands.Topbrands_
 import com.netforceinfotech.eclipseexpress.ProductCategory.Top_selling.Top_selling_adapter;
 import com.netforceinfotech.eclipseexpress.ProductCategory.Top_selling.top_selling_viewall.Topselling_viewall;
 import com.netforceinfotech.eclipseexpress.ProductCategory.sub_category_brands_offers.Brands_offers_adapter;
+import com.netforceinfotech.eclipseexpress.ProductCategory.sub_category_brands_offers.sub_category_viewall_offer.Viewall_offer_all;
 import com.netforceinfotech.eclipseexpress.R;
 import com.netforceinfotech.eclipseexpress.category.CategoryActivity;
 import com.netforceinfotech.eclipseexpress.general.Tabletsize;
@@ -156,7 +157,13 @@ if(Tabletsize.isTablet(this))
                 startActivity(i5);
             }
         });
-
+viewall_offers.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View view) {
+        Intent i5=new Intent(Productlist_category_activity.this, Viewall_offer_all.class);
+        startActivity(i5);
+    }
+});
 
     }
     private void setuprecyclers() {

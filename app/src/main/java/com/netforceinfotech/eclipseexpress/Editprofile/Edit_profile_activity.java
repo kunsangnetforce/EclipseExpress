@@ -235,6 +235,9 @@ public class Edit_profile_activity extends AppCompatActivity implements View.OnC
 
         if (bitmap != null) {
             Log.e("bitmap", bitmap.toString());
+
+
+            
             Uri tempUri = getImageUri(getApplicationContext(), bitmap);
           String path=  getRealPathFromURI(tempUri);
           File  imageFile2 = new File(getRealPathFromURI(tempUri));
@@ -247,6 +250,7 @@ public class Edit_profile_activity extends AppCompatActivity implements View.OnC
                     .load(Webservice_image)
                     .progressDialog(progressDialog)
                     .setMultipartFile("image", "image/*", imageFile2)
+
                     .setMultipartParameter("fname", input_fname.getText().toString())
                     .setMultipartParameter("lname", input_lname.getText().toString())
                     .setMultipartParameter("dob", input_dob.getText().toString())

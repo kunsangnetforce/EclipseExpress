@@ -26,7 +26,7 @@ public class viewall_topbrands_adapter  extends RecyclerView.Adapter<CommomHolde
 
 
 
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.sub_cat_viewall_single, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.viewall_subcategory_top_brands, parent, false);
         CommomHolder_subcategory_all_topbrands viewHolder = new CommomHolder_subcategory_all_topbrands(view);
         return viewHolder;
 
