@@ -7,9 +7,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
+import android.view.MenuItem;
 
-import com.netforceinfotech.eclipseexpress.Account.My_orders.My_orders_adapter;
+
 import com.netforceinfotech.eclipseexpress.R;
 
 public class Myorder_details extends AppCompatActivity {
@@ -39,7 +39,7 @@ public class Myorder_details extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        String teams = "My orders";
+        String teams = "My orders Detail";
         getSupportActionBar().setTitle(teams);
 
     }
@@ -48,5 +48,18 @@ public class Myorder_details extends AppCompatActivity {
         recyclerView_my_orders_detail.setLayoutManager(myorders_linearlayout_manager);
         recyclerView_my_orders_detail.setAdapter(orders_detail_adapter);
 
+    }
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle item selection
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                overridePendingTransition(R.anim.left_to_right, R.anim.right_to_left);
+                return true;
+
+
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 }
