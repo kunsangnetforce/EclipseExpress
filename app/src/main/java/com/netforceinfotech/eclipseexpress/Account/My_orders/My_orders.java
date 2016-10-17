@@ -25,7 +25,7 @@ public class My_orders extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_orders);
         myorders_linearlayout_manager =  new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
-        orders_adapter=new My_orders_adapter(this);
+       orders_adapter=new My_orders_adapter(this);
         setuprecyclers();
         setupToolBar();
 

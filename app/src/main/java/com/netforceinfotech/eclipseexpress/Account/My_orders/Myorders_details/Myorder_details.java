@@ -7,9 +7,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
 
-import com.netforceinfotech.eclipseexpress.Account.My_orders.My_orders_adapter;
+
+
 import com.netforceinfotech.eclipseexpress.R;
 
 public class Myorder_details extends AppCompatActivity {
