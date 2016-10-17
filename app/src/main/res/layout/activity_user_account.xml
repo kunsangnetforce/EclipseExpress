@@ -189,7 +189,7 @@
                         <LinearLayout
                             android:orientation="vertical"
                             android:layout_width="match_parent"
-                            android:layout_height="200dp">
+                            android:layout_height="80dp">
 
                             <Button
                                 style="?android:attr/buttonStyleSmall"
@@ -203,7 +203,7 @@
                                 android:paddingRight="50dp"
                                 android:background="@color/colorPrimary"
                                 android:layout_gravity="center_horizontal"
-                                android:id="@+id/button2" />
+                                android:id="@+id/button_logout" />
 
                         </LinearLayout>
                     </LinearLayout>

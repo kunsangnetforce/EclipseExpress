@@ -49,6 +49,6 @@ public class Topbrands_adapter extends RecyclerView.Adapter<CommomHolder_Topbran
 
     @Override
     public int getItemCount() {
-        return 3;
+        return 6;
     }
 }

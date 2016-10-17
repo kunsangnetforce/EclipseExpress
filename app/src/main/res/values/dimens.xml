@@ -6,5 +6,6 @@
     <dimen name="min_height_header">72dp</dimen>
     <dimen name="min_height_header3">0dp</dimen>
     <dimen name="max_height_header1">478dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
     />
 </resources>

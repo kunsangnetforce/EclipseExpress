@@ -137,6 +137,7 @@
                 android:layout_weight="1"
                 android:layout_margin="10dp"
                 android:background="@drawable/btn_bg"
+                android:id="@+id/rl_submit"
                 android:layout_height="0dp">
 
                 <TextView

@@ -33,6 +33,7 @@
                 android:layout_marginTop="6dp"
                 android:text="Kunsang"
                 android:textColor="@color/colorText"
+                android:id="@+id/tv_username"
                 android:textStyle="bold" />
         </LinearLayout>
 
@@ -78,6 +79,7 @@
                     android:layout_height="wrap_content"
                     android:text="990000909"
                     android:textColor="@color/colorText"
+                    android:id="@+id/tv_mobno"
                     android:textSize="12sp" />
             </LinearLayout>
 
@@ -100,7 +102,8 @@
                     android:layout_height="wrap_content"
                     android:text="kunwangyal05@gmail.com"
                     android:textColor="@color/colorText"
-                    android:textSize="12sp" />
+                    android:textSize="12sp"
+                    android:id="@+id/tv_email_profile" />
             </LinearLayout>
         </LinearLayout>
     </RelativeLayout>

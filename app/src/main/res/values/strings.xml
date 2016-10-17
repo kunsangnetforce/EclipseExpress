@@ -9,7 +9,8 @@
     <string name="facebook">Facebook</string>
     <string name="twitter">twitter</string>
     <string name="confirmpassword">Confirm Password</string>
-    <string name="uername">User name</string>
+    <string name="fname">First Name</string>
+    <string name="lname">Last Name</string>
     <string name="mobile">Mobile Number</string>
     <string name="getstarted">Get Started</string>
     <string name="drawer_open">Open</string>
@@ -33,5 +34,10 @@
     <string name="ok">OK</string>
     <string name="size_available">Size available for this item</string>
     <string name="postal">Postal code</string>
+    <string name="url">https://netforcesales.com/eclipseexpress/</string>
+    <string name="title_activity_viewall_subcategory">Viewall_subcategory</string>
+    <string name="title_activity_view_all_flat_offers">View_all_flat_offers</string>
+    <string name="title_activity_myorder_details">Myorder_details</string>
+
 
 </resources>

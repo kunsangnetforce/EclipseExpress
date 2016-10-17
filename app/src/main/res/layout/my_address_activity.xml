@@ -33,6 +33,7 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:id="@+id/rl1"
+
                     android:layout_height="match_parent">
                     <LinearLayout
                         android:orientation="vertical"
@@ -65,39 +66,54 @@ android:textColor="#Ed4812"
                         <RelativeLayout
                             android:layout_width="0dp"
                             android:layout_weight="1"
-                            android:background="@drawable/edittext_bg"
-                            android:layout_margin="10dp"
-                            android:layout_height="60dp">
 
-                            <EditText
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:inputType="textPersonName"
-                                android:hint="Enter First Name"
-                                android:ems="10"
-                                android:textSize="10sp"
-android:layout_margin="10dp"
-                                android:backgroundTint="@color/transparent"
-                                android:id="@+id/editText2" />
+                            android:layout_margin="10dp"
+                            android:layout_height="wrap_content">
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:background="@drawable/edittext_bg"
+                                android:layout_height="wrap_content">
+
+                                <EditText
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:inputType="textPersonName"
+                                    android:hint="Enter First Name"
+                                    android:ems="10"
+                                    android:textSize="10sp"
+                                    android:backgroundTint="@color/transparent"
+                                    android:id="@+id/editText2"
+                                    android:layout_marginLeft="10dp"
+                                    android:layout_alignParentTop="true"
+                                    android:layout_alignParentBottom="true" />
+                            </RelativeLayout>
                         </RelativeLayout>
 
                         <RelativeLayout
                             android:layout_width="0dp"
                             android:layout_weight="1"
                             android:layout_margin="10dp"
-                            android:background="@drawable/edittext_bg"
-                            android:layout_height="60dp">
 
-                            <EditText
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:inputType="textPersonName"
-                                android:hint="Enter Last Name"
-                                android:ems="10"
-                                android:textSize="10sp"
-                                android:layout_margin="10dp"
-                                android:backgroundTint="@color/transparent"
-                                android:id="@+id/editText3" />
+                            android:layout_height="wrap_content">
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:background="@drawable/edittext_bg"
+                                android:layout_height="wrap_content">
+
+                                <EditText
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:inputType="textPersonName"
+                                    android:hint="Enter Last Name"
+                                    android:ems="10"
+                                    android:textSize="10sp"
+                                    android:layout_marginLeft="10dp"
+                                    android:backgroundTint="@color/transparent"
+                                    android:id="@+id/editText3"
+                                     />
+                            </RelativeLayout>
                         </RelativeLayout>
                     </LinearLayout>
 
@@ -111,7 +127,7 @@ android:layout_margin="10dp"
                             android:layout_weight="1"
                             android:background="@drawable/edittext_bg"
                             android:layout_margin="10dp"
-                            android:layout_height="160dp" >
+                            android:layout_height="100dp" >
 
                             <EditText
                                 android:layout_width="match_parent"
@@ -127,6 +143,32 @@ android:layout_margin="10dp"
                                 android:id="@+id/editText8" />
                         </RelativeLayout>
                     </LinearLayout>
+                        <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_margin="10dp"
+                            android:layout_height="match_parent">
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:background="@drawable/edittext_bg"
+                                android:layout_height="match_parent">
+
+                                <EditText
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:inputType="textPersonName"
+                                    android:hint="Select Country"
+                                    android:ems="10"
+                                    android:textSize="10sp"
+                                    android:backgroundTint="@color/transparent"
+                                    android:id="@+id/editText_country"
+                                    android:layout_marginLeft="10dp"
+                                    android:layout_marginRight="10dp"
+                                    android:layout_alignParentTop="true"
+                                    android:layout_alignParentBottom="true" />
+                            </RelativeLayout>
+
+                        </LinearLayout>
 
                     <LinearLayout
                         android:orientation="horizontal"
@@ -138,18 +180,26 @@ android:layout_margin="10dp"
                             android:layout_weight="1"
                             android:background="@drawable/edittext_bg"
                             android:layout_margin="10dp"
-                            android:layout_height="60dp" >
+                            android:layout_height="wrap_content" >
 
-                            <EditText
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:inputType="textPersonName"
-                                android:hint="Enter State"
-                                android:ems="10"
-                                android:textSize="10sp"
-                                android:layout_margin="10dp"
-                                android:backgroundTint="@color/transparent"
-                                android:id="@+id/editText5" />
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+
+                                <EditText
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:inputType="textPersonName"
+                                    android:hint="Enter State"
+                                    android:ems="10"
+                                    android:textSize="10sp"
+                                    android:backgroundTint="@color/transparent"
+                                    android:id="@+id/editText5"
+                                    android:layout_marginLeft="10dp"
+                                    android:layout_marginRight="10dp"
+                                    android:layout_alignParentTop="true"
+                                    android:layout_alignParentBottom="true" />
+                            </RelativeLayout>
                         </RelativeLayout>
 
                         <RelativeLayout
@@ -157,18 +207,26 @@ android:layout_margin="10dp"
                             android:layout_weight="1"
                             android:layout_margin="10dp"
                             android:background="@drawable/edittext_bg"
-                            android:layout_height="60dp" >
+                            android:layout_height="wrap_content" >
 
-                            <EditText
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:inputType="textPersonName"
-                                android:hint="Enter City"
-                                android:ems="10"
-                                android:textSize="10sp"
-                                android:layout_margin="10dp"
-                                android:backgroundTint="@color/transparent"
-                                android:id="@+id/editText4" />
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+
+                                <EditText
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:inputType="textPersonName"
+                                    android:hint="Enter City"
+                                    android:ems="10"
+                                    android:textSize="10sp"
+                                    android:backgroundTint="@color/transparent"
+                                    android:id="@+id/editText4"
+                                    android:layout_marginLeft="10dp"
+                                    android:layout_marginRight="10dp"
+                                    android:layout_alignParentBottom="true"
+                                    android:layout_alignParentTop="true" />
+                            </RelativeLayout>
                         </RelativeLayout>
                     </LinearLayout>
 
@@ -182,7 +240,7 @@ android:layout_margin="10dp"
                             android:layout_weight="1"
                             android:background="@drawable/edittext_bg"
                             android:layout_margin="10dp"
-                            android:layout_height="60dp"
+                            android:layout_height="wrap_content"
                           >
 
                             <EditText
@@ -192,9 +250,12 @@ android:layout_margin="10dp"
                                 android:hint="Enter Pincode"
                                 android:ems="10"
                                 android:textSize="10sp"
-                                android:layout_margin="10dp"
                                 android:backgroundTint="@color/transparent"
-                                android:id="@+id/editText6" />
+                                android:id="@+id/editText6"
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginRight="10dp"
+                                android:layout_alignParentTop="true"
+                                android:layout_alignParentBottom="true" />
                         </RelativeLayout>
 
                         <RelativeLayout
@@ -202,7 +263,7 @@ android:layout_margin="10dp"
                             android:layout_weight="1"
                             android:layout_margin="10dp"
                             android:background="@drawable/edittext_bg"
-                            android:layout_height="60dp" >
+                            android:layout_height="wrap_content" >
 
                             <EditText
                                 android:layout_width="wrap_content"
@@ -211,9 +272,12 @@ android:layout_margin="10dp"
                                 android:hint="Enter Mobile No"
                                 android:ems="10"
                                 android:textSize="10sp"
-                                android:layout_margin="10dp"
                                 android:backgroundTint="@color/transparent"
-                                android:id="@+id/editText7" />
+                                android:id="@+id/editText7"
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginRight="10dp"
+                                android:layout_alignParentTop="true"
+                                android:layout_alignParentBottom="true" />
                         </RelativeLayout>
                     </LinearLayout>
                     </LinearLayout>
@@ -233,7 +297,7 @@ android:layout_margin="10dp"
                             android:orientation="horizontal"
                             android:layout_width="match_parent"
                             android:layout_margin="10dp"
-                            android:layout_height="60dp" >
+                            android:layout_height="wrap_content" >
 
                             <TextView
                                 android:layout_width="wrap_content"
@@ -255,7 +319,7 @@ android:layout_margin="10dp"
                             android:orientation="horizontal"
                             android:layout_width="match_parent"
                             android:layout_margin="10dp"
-                            android:layout_height="60dp" >
+                            android:layout_height="wrap_content" >
 
                             <TextView
                                 android:layout_width="wrap_content"
@@ -266,18 +330,19 @@ android:layout_margin="10dp"
                                 android:id="@+id/textView40" />
                         </LinearLayout>
 
+
                         <LinearLayout
                             android:orientation="horizontal"
                             android:layout_width="match_parent"
                             android:weightSum="2"
-                            android:layout_height="60dp" >
+                            android:layout_height="wrap_content" >
 
                             <RelativeLayout
                                 android:layout_width="0dp"
                                 android:layout_weight="1"
                                 android:background="@drawable/edittext_bg"
                                 android:layout_margin="10dp"
-                                android:layout_height="match_parent" >
+                                android:layout_height="wrap_content" >
 
                                 <EditText
                                     android:layout_width="wrap_content"
@@ -286,9 +351,13 @@ android:layout_margin="10dp"
                                     android:hint="Enter First Name"
                                     android:ems="10"
                                     android:textSize="10sp"
-                                    android:layout_margin="10dp"
+                                    android:layout_alignParentBottom="true"
                                     android:backgroundTint="@color/transparent"
-                                    android:id="@+id/editText9" />
+                                    android:id="@+id/editText9"
+                                    android:layout_marginLeft="10dp"
+                                    android:layout_marginRight="10dp"
+
+                                    android:layout_alignParentTop="true" />
                             </RelativeLayout>
 
                             <RelativeLayout
@@ -296,7 +365,7 @@ android:layout_margin="10dp"
                                 android:layout_weight="1"
                                 android:layout_margin="10dp"
                                 android:background="@drawable/edittext_bg"
-                                android:layout_height="match_parent" >
+                                android:layout_height="wrap_content" >
 
                                 <EditText
                                     android:layout_width="wrap_content"
@@ -305,9 +374,13 @@ android:layout_margin="10dp"
                                     android:hint="Enter Last Name"
                                     android:ems="10"
                                     android:textSize="10sp"
-                                    android:layout_margin="10dp"
+                                    android:layout_alignParentBottom="true"
                                     android:backgroundTint="@color/transparent"
-                                    android:id="@+id/editText10" />
+                                    android:id="@+id/editText10"
+                                    android:layout_marginLeft="10dp"
+                                    android:layout_marginRight="10dp"
+
+                                    android:layout_alignParentTop="true" />
                             </RelativeLayout>
                         </LinearLayout>
 
@@ -321,7 +394,7 @@ android:layout_margin="10dp"
                                 android:layout_weight="1"
                                 android:background="@drawable/edittext_bg"
                                 android:layout_margin="10dp"
-                                android:layout_height="160dp" >
+                                android:layout_height="100dp" >
 
                                 <EditText
                                     android:layout_width="match_parent"
@@ -329,7 +402,9 @@ android:layout_margin="10dp"
                                     android:inputType="textPersonName"
                                     android:hint="Enter Address"
                                     android:ems="10"
-                                    android:layout_margin="10dp"
+                                    android:layout_marginLeft="10dp"
+                                    android:layout_marginRight="10dp"
+
                                     android:maxLines="3"
                                     android:textSize="10sp"
                                     android:minLines="3"
@@ -337,18 +412,43 @@ android:layout_margin="10dp"
                                     android:id="@+id/editText11" />
                             </RelativeLayout>
                         </LinearLayout>
-
                         <LinearLayout
                             android:orientation="horizontal"
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent" >
+                            android:layout_margin="10dp"
+                            android:layout_height="match_parent">
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:background="@drawable/edittext_bg"
+                                android:layout_height="match_parent">
+
+                                <EditText
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:inputType="textPersonName"
+                                    android:hint="Select Country"
+                                    android:ems="10"
+                                    android:textSize="10sp"
+                                    android:backgroundTint="@color/transparent"
+                                    android:id="@+id/editText_country2"
+                                    android:layout_marginLeft="10dp"
+                                    android:layout_marginRight="10dp"
+                                    android:layout_alignParentTop="true"
+                                    android:layout_alignParentBottom="true" />
+                            </RelativeLayout>
+
+                        </LinearLayout>
+                        <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" >
 
                             <RelativeLayout
                                 android:layout_width="0dp"
                                 android:layout_weight="1"
                                 android:background="@drawable/edittext_bg"
                                 android:layout_margin="10dp"
-                                android:layout_height="60dp" >
+                                android:layout_height="wrap_content" >
 
                                 <EditText
                                     android:layout_width="wrap_content"
@@ -357,9 +457,14 @@ android:layout_margin="10dp"
                                     android:hint="Enter State"
                                     android:ems="10"
                                     android:textSize="10sp"
-                                    android:layout_margin="10dp"
+                                    android:layout_alignParentBottom="true"
+
                                     android:backgroundTint="@color/transparent"
-                                    android:id="@+id/editText12" />
+                                    android:id="@+id/editText12"
+                                    android:layout_marginLeft="10dp"
+                                    android:layout_marginRight="10dp"
+
+                                    android:layout_alignParentTop="true" />
                             </RelativeLayout>
 
                             <RelativeLayout
@@ -367,7 +472,7 @@ android:layout_margin="10dp"
                                 android:layout_weight="1"
                                 android:layout_margin="10dp"
                                 android:background="@drawable/edittext_bg"
-                                android:layout_height="match_parent" >
+                                android:layout_height="wrap_content" >
 
                                 <EditText
                                     android:layout_width="wrap_content"
@@ -376,23 +481,28 @@ android:layout_margin="10dp"
                                     android:hint="Enter City"
                                     android:ems="10"
                                     android:textSize="10sp"
-                                    android:layout_margin="10dp"
+
+                                    android:layout_alignParentBottom="true"
                                     android:backgroundTint="@color/transparent"
-                                    android:id="@+id/editText13" />
+                                    android:id="@+id/editText13"
+                                    android:layout_marginLeft="10dp"
+                                    android:layout_marginRight="10dp"
+
+                                    android:layout_alignParentTop="true" />
                             </RelativeLayout>
                         </LinearLayout>
 
                         <LinearLayout
                             android:orientation="horizontal"
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent" >
+                            android:layout_height="wrap_content" >
 
                             <RelativeLayout
                                 android:layout_width="0dp"
                                 android:layout_weight="1"
                                 android:background="@drawable/edittext_bg"
                                 android:layout_margin="10dp"
-                                android:layout_height="60dp" >
+                                android:layout_height="wrap_content" >
 
                                 <EditText
                                     android:layout_width="wrap_content"
@@ -401,9 +511,13 @@ android:layout_margin="10dp"
                                     android:hint="Enter Pincode"
                                     android:ems="10"
                                     android:textSize="10sp"
-                                    android:layout_margin="10dp"
+                                    android:layout_alignParentBottom="true"
                                     android:backgroundTint="@color/transparent"
-                                    android:id="@+id/editText14" />
+                                    android:id="@+id/editText14"
+                                    android:layout_marginLeft="10dp"
+                                    android:layout_marginRight="10dp"
+
+                                    android:layout_alignParentTop="true" />
                             </RelativeLayout>
 
                             <RelativeLayout
@@ -411,7 +525,7 @@ android:layout_margin="10dp"
                                 android:layout_weight="1"
                                 android:layout_margin="10dp"
                                 android:background="@drawable/edittext_bg"
-                                android:layout_height="match_parent" >
+                                android:layout_height="wrap_content" >
 
                                 <EditText
                                     android:layout_width="wrap_content"
@@ -420,9 +534,13 @@ android:layout_margin="10dp"
                                     android:hint="Enter Mobile No"
                                     android:ems="10"
                                     android:textSize="10sp"
-                                    android:layout_margin="10dp"
+                                    android:layout_alignParentBottom="true"
                                     android:backgroundTint="@color/transparent"
-                                    android:id="@+id/editText15" />
+                                    android:id="@+id/editText15"
+                                    android:layout_marginLeft="10dp"
+                                    android:layout_marginRight="10dp"
+
+                                    android:layout_alignParentTop="true" />
                             </RelativeLayout>
                         </LinearLayout>
                     </LinearLayout>
@@ -438,7 +556,7 @@ android:layout_margin="10dp"
 
             <Button
                 style="?android:attr/buttonStyleSmall"
-                android:layout_width="100dp"
+                android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:text="Update"
                 android:layout_centerHorizontal="true"
